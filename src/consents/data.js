@@ -44,3 +44,12 @@ export const technologies = [
   SiShadcnui,
   TbBrandFramerMotion,
 ];
+
+export const aboutMe = `  Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptas asperiores cumque velit in placeat optio neque ratione est! Maxime cupiditate repellendus perferendis nisi nemo alias reiciendis repellat! Modi, molestias.
+        Placeat, nisi, vero labore nulla eveniet voluptas eum numquam recusandae, dignissimos quo nesciunt repellat aliquid nemo aspernatur id a exercitationem? Iste, quod placeat. Corrupti eaque explicabo alias rerum, vero porro?
+        Libero dicta architecto ratione repellat illum excepturi sapiente culpa officiis, itaque assumenda modi pariatur quos atque iusto placeat corrupti laboriosam cumque beatae repellendus laborum fuga. Deleniti harum sed aliquam debitis?
+        Ad id incidunt praesentium. Ea commodi non sed dolore culpa architecto veritatis odit repudiandae possimus? Autem ab vero hic blanditiis minima fugit assumenda aut, impedit sunt alias, quo non eius?
+        Maiores exercitationem voluptate, dolor eius quis reiciendis doloremque doloribus vel perferendis mollitia dignissimos repellat odio commodi reprehenderit blanditiis architecto iusto culpa perspiciatis eos ut quidem ad tenetur velit? Quibusdam, deleniti?
+        Quod, ex sint praesentium earum quas non ut labore doloremque iusto? Labore distinctio nisi, sapiente rerum impedit asperiores maxime, dolore eos consequuntur natus optio excepturi adipisci consequatur error earum culpa.
+        Modi eligendi facere distinctio nemo sit doloremque labore consectetur odio, illo exercitationem voluptatibus at expedita quas dignissimos velit facilis incidunt mollitia possimus consequuntur deserunt! Autem ullam ad quod cupiditate quaerat!
+        Perferendis dolorum velit rerum ab ratione reiciendis consequuntur facere accusantium repellendus iusto eligendi perspiciatis enim, quae expedita atque, animi blanditiis, nobis dolorem labore esse recusandae excepturi facilis laborum! Quidem, possimus!`

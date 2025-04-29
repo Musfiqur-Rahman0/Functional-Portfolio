@@ -8,7 +8,7 @@ import React, { use } from "react";
 const Home = () => {
   return (
     <div>
-      <div className="w-10/12 mx-auto px-4 py-2 mt-10 space-y-16">
+      <div className=" mx-auto px-4 py-2 mt-10 space-y-16">
         <HeroSection />
         <section id="projects">
           <h2 className="text-2xl font-bold text-primary text-center">

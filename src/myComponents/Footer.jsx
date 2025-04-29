@@ -4,8 +4,8 @@ import { IoMdMail } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className="py-10 mt-5">
-      <div className="w-10/12 mx-auto space-y-10">
+    <div className="py-10 mt-5 max-w-7xl mx-auto">
+      <div className=" mx-auto space-y-10">
         <h2 className="text-2xl font-semibold">Contact</h2>
         <div>
           <p className="">
