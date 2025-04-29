@@ -21,7 +21,8 @@ const Comments = () => {
     return (
             <section className="bg-white w-full dark:bg-gray-900 py-8 lg:py-16 antialiased">
   <div className=" w-[90%]  mx-auto px-4">
-    <h2>test</h2>
+    <h2>test </h2>
+    <p>test ok</p>
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">Total Reviews (20)</h2>
     </div>
