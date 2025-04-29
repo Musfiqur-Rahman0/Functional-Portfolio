@@ -10,7 +10,7 @@ export const AuthContext =  createContext();
 const AuthProvider = ({children}) => {
     const [user, setUser] = useState();
     const [isLogedIn, setIsLogedIn] = useState(false)
-    const [comment, setComment]  = useState({})
+    const [comments, setComments]  = useState({})
     
     
     const commentDataRef = collection(db, "comments")
@@ -22,7 +22,7 @@ const AuthProvider = ({children}) => {
             try{
                 const commentData = await getDocs(commentDataRef);
               const data = commentData.docs.map((doc)=>  doc.data())
-                setComment(data)
+                setComments(data)
             }catch(err){
                 console.error(err)
             }
@@ -31,9 +31,6 @@ const AuthProvider = ({children}) => {
         return () => getComments()
 
       },[])
-     
-  
-      console.log(comment)
     
 
     return  (
@@ -42,6 +39,7 @@ const AuthProvider = ({children}) => {
             setUser,
             isLogedIn, 
             setIsLogedIn
+,            comments
         }}>{children}</AuthContext.Provider>
     )
 }
