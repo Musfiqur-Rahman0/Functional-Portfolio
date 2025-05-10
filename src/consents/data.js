@@ -2,12 +2,13 @@ import { FcGoogle } from "react-icons/fc";
 import {
   FaApple,
   FaLinkedin,
+  FaNodeJs,
   FaReact,
   FaTwitter,
   FaYoutube,
 } from "react-icons/fa";
 import { FaMeta } from "react-icons/fa6";
-import { SiShadcnui, SiTailwindcss } from "react-icons/si";
+import { SiExpress, SiFirebase, SiMongodb, SiShadcnui, SiTailwindcss } from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 
 export const experienceData = [
@@ -43,6 +44,10 @@ export const technologies = [
   SiTailwindcss,
   SiShadcnui,
   TbBrandFramerMotion,
+  SiFirebase,
+  SiMongodb,
+  SiExpress,
+  FaNodeJs,
 ];
 
 export const aboutMe = `  Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti voluptas asperiores cumque velit in placeat optio neque ratione est! Maxime cupiditate repellendus perferendis nisi nemo alias reiciendis repellat! Modi, molestias.

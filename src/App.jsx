@@ -8,6 +8,7 @@ import Contact from "./pages/Contact";
 import Layout from "./layout/Layout";
 import AuthProvider from "./Context/AuthContext";
 import { ThemeProvider } from "./Theme/ThemeProvider";
+import PrivetRoute from "./routes/PrivetRoute";
 
 function App() {
   const router = createBrowserRouter([
@@ -25,7 +26,9 @@ function App() {
         },
         {
           path: "contact",
-          element: <Contact />,
+          element: <PrivetRoute>
+            <Contact />
+          </PrivetRoute>,
         },
       ],
     },

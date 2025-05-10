@@ -4,18 +4,19 @@ import { signInWithPopup, signOut } from 'firebase/auth';
 import React, { useContext } from 'react';
 
 const useAuth = () => {
-    const {setUser} = useContext(AuthContext)
+    const {setUser, } = useContext(AuthContext)
     const login  =async () => {
         try{
             const userCred = await signInWithPopup(auth, googleProvider);
-        setUser(userCred.user)
+        setUser(userCred.user);
+      
         }catch(error){
             console.error(error.message)
         }
     }
     const logout =async () => {
         try{
-        await signOut();
+        await signOut(auth);
         setUser(null)
         }catch(error){
             console.error(error.message)

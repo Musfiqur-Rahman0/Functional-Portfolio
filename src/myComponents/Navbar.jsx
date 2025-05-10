@@ -1,7 +1,12 @@
 import { ModeToggle } from "@/components/ui/toggleTheme/ModeToggle";
+import useAuth from "@/hooks/useAuth";
+import { use } from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
+
+  const {logout} = useAuth()
+
   return (
     <div className="py-5 ">
       <div className=" max-w-7xl mx-auto">
@@ -15,6 +20,7 @@ const Navbar = () => {
           </div>
         </nav>
       </div>
+      {/* <button onClick={logout}>Logout</button> */}
     </div>
   );
 };
