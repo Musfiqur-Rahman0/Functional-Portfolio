@@ -8,12 +8,12 @@ import Projects from "@/myComponents/Projects";
 import Technologies from "@/myComponents/Technologies";
 
 import React, { use } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 
 const Home = () => {
 
   const projects = useLoaderData();
- 
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -26,7 +26,7 @@ const Home = () => {
          
           {projects.slice(0,  2).map((project, index)=> <Projects project={project} key={index} order={index === 1 ? "reversed" : ""}/>)}
           <div className="flex items-center justify-center">
-            <Button className="cursor-pointer rounded-full">View More</Button>
+            <Button onClick={()=> navigate("/projects")} className="cursor-pointer rounded-full">View More</Button>
           </div>
         </section>
         <section id="expriences">

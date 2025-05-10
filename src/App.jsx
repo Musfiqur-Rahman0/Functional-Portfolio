@@ -10,6 +10,7 @@ import AuthProvider from "./Context/AuthContext";
 import { ThemeProvider } from "./Theme/ThemeProvider";
 import PrivetRoute from "./routes/PrivetRoute";
 import ProjectsDetails from "./pages/ProjectsDetails";
+import ProjectsPage from "./pages/ProjectsPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -26,6 +27,10 @@ function App() {
         {
           path: "about",
           element: <About />,
+        },
+        {
+          path: "/projects",
+          element: <ProjectsPage />,
         },
         {
           path: "/project/:projectId",
