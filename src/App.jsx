@@ -9,20 +9,28 @@ import Layout from "./layout/Layout";
 import AuthProvider from "./Context/AuthContext";
 import { ThemeProvider } from "./Theme/ThemeProvider";
 import PrivetRoute from "./routes/PrivetRoute";
+import ProjectsDetails from "./pages/ProjectsDetails";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
+      errorElement : <p>Error page</p>,
       children: [
         {
           path: "/",
           element: <Home />,
+          loader : ()=> fetch("/data.json")
         },
         {
           path: "about",
           element: <About />,
+        },
+        {
+          path: "/project/:projectId",
+          loader : ()=> fetch("/data.json"),
+          element: <ProjectsDetails />,
         },
         {
           path: "contact",

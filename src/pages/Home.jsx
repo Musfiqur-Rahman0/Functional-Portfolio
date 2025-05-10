@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import Exprience from "@/myComponents/Exprience";
 import Expriences from "@/myComponents/Expriences";
 import ExpriencesCard from "@/myComponents/Expriences/ExpriencesCard";
@@ -7,28 +8,26 @@ import Projects from "@/myComponents/Projects";
 import Technologies from "@/myComponents/Technologies";
 
 import React, { use } from "react";
+import { useLoaderData } from "react-router-dom";
 
 const Home = () => {
+
+  const projects = useLoaderData();
+ 
+
   return (
     <div>
-      <div className=" mx-auto px-4 py-2 mt-10 space-y-16">
+      <div className=" mx-auto px-4 py-2 mt-10 space-y-24">
         <HeroSection />
-        <section id="projects">
+        <section id="projects" className="space-y-20">
           <h2 className="text-2xl font-bold text-primary text-center">
             PROJECTS
           </h2>
-          {/* <div className="flex items-center justify-center gap-5">
-            <ProjectCard
-              name="html tutorial"
-              image="/src/assets/project-thumbnail-1.png"
-            />
-            <ProjectCard
-              name="css tutorial"
-              image="/src/assets/project-thumbnail-2.png"
-            />
-          </div> */}
-          <Projects />
-          <Projects order={"reversed"}/>
+         
+          {projects.slice(0,  2).map((project, index)=> <Projects project={project} key={index} order={index === 1 ? "reversed" : ""}/>)}
+          <div className="flex items-center justify-center">
+            <Button className="cursor-pointer rounded-full">View More</Button>
+          </div>
         </section>
         <section id="expriences">
           <h2 className="text-2xl font-bold text-primary text-center">
