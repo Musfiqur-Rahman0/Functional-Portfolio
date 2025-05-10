@@ -1,46 +1,58 @@
 import { db } from "@/firebase/firebase.init";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs, onSnapshot } from "firebase/firestore";
+
 import { createContext, useEffect, useState } from "react";
+import { GlobalContext } from "./GlobalContext";
+import { use } from "react";
 
+export const AuthContext = createContext();
 
+const AuthProvider = ({ children }) => {
+  const [comments, setComments] = useState({});
+  const [commentsLoading, setCommentsLoading] = useState(true);
+  const { setLoading } = use(GlobalContext);
 
-export const AuthContext =  createContext();
+  const commentDataRef = collection(db, "comments");
 
+  const getComments = async () => {
+    try {
+      const commentData = await getDocs(commentDataRef);
+      commentData.docs.map((doc) => doc.data());
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-const AuthProvider = ({children}) => {
-    const [user, setUser] = useState();
-    const [isLogedIn, setIsLogedIn] = useState(false)
-    const [comments, setComments]  = useState({})
-    
-    
-    const commentDataRef = collection(db, "comments")
+  const setCommentsData = async (userComment) => {
+    try {
+      await addDoc(commentDataRef, userComment);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
-    
+  useEffect(() => {
+    const unSubscribe = onSnapshot(commentDataRef, (snapshot) => {
+      const newComments = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setComments(newComments);
+      setCommentsLoading(false);
+    });
+    return () => unSubscribe();
+  }, []);
 
-      useEffect(()=> {
-        const getComments = async() => {
-            try{
-                const commentData = await getDocs(commentDataRef);
-              const data = commentData.docs.map((doc)=>  doc.data())
-                setComments(data)
-            }catch(err){
-                console.error(err)
-            }
-        }
-
-        return () => getComments()
-
-      },[])
-    
-
-    return  (
-        <AuthContext.Provider value={{
-            user,
-            setUser,
-            isLogedIn, 
-            setIsLogedIn
-,            comments
-        }}>{children}</AuthContext.Provider>
-    )
-}
+  return (
+    <AuthContext.Provider
+      value={{
+        comments,
+        setCommentsData,
+        commentsLoading,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
+};
 export default AuthProvider;

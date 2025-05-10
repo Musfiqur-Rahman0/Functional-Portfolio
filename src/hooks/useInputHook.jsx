@@ -1,15 +1,13 @@
-
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const useInputHook = (defaultValue) => {
+  const [inputValue, setInputValue] = useState(defaultValue);
 
-    const [inputValue, setInputValue] = useState("");
+  const handleInputChange = (e, defaultValue) => {
+    setInputValue(e.target.value || defaultValue);
+  };
 
-    const handleInputChange = (e) => {
-        setInputValue(e.target.value)
-    }
-
-    return [inputValue, handleInputChange]
+  return [inputValue, handleInputChange];
 };
 
 export default useInputHook;
