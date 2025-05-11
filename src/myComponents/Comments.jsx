@@ -39,7 +39,7 @@ const Comments = () => {
         </div>
         <form className="mb-6">
           {/* to check why it is not working */}
-          <div className="py-2 px-4 mb-4 bg-white rounded-lg rounded-t-lg border border-gray-200 dark:bg-gray-800 dark:border-gray-700">
+          <div className="py-2 px-4 mb-4 bg-gray-400 rounded-lg rounded-t-lg border ">
             <label htmlFor="comment" className="sr-only">
               Your comment
             </label>

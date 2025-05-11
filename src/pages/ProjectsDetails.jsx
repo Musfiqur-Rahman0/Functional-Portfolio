@@ -32,7 +32,7 @@ const ProjectsDetails = () => {
             <img
               src={projectImage}
               alt={name}
-              className="w-full h-[500px] rounded-md border border-gray-200"
+              className="w-full  rounded-md border border-gray-200"
             />
           </figure>
           <div className="flex items-center justify-center gap-5">
