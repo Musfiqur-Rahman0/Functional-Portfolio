@@ -58,3 +58,16 @@ export const aboutMe = `  Lorem ipsum dolor sit amet consectetur adipisicing eli
         Quod, ex sint praesentium earum quas non ut labore doloremque iusto? Labore distinctio nisi, sapiente rerum impedit asperiores maxime, dolore eos consequuntur natus optio excepturi adipisci consequatur error earum culpa.
         Modi eligendi facere distinctio nemo sit doloremque labore consectetur odio, illo exercitationem voluptatibus at expedita quas dignissimos velit facilis incidunt mollitia possimus consequuntur deserunt! Autem ullam ad quod cupiditate quaerat!
         Perferendis dolorum velit rerum ab ratione reiciendis consequuntur facere accusantium repellendus iusto eligendi perspiciatis enim, quae expedita atque, animi blanditiis, nobis dolorem labore esse recusandae excepturi facilis laborum! Quidem, possimus!`
+
+export const glowing = {
+  glow: {
+    scale: [1, 1.1, 1],
+    opacity: [0.8, 1, 0.8],
+    transition: {
+      duration: 2.5,
+      ease: "linear",
+      repeatType: "reverse",
+      repeat: Infinity,
+    },
+  },
+};

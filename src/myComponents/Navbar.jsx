@@ -2,16 +2,18 @@ import { ModeToggle } from "@/components/ui/toggleTheme/ModeToggle";
 import useAuth from "@/hooks/useAuth";
 import { use } from "react";
 import { Link } from "react-router-dom";
+import BackgroundCirlcle from "./BackgroundCirlcle";
 
 const Navbar = () => {
-
-  const {logout} = useAuth()
+  const { logout } = useAuth();
 
   return (
-    <div className="py-5 ">
+    <nav className="py-5 fixed w-full z-50 backdrop-blur-2xl">
       <div className=" max-w-7xl mx-auto">
         <nav className="flex items-center justify-between ">
-          <h2 className="text-3xl font-bold ">Monster</h2>
+          <figure className=" bg-gradient-to-b from-secondary to-primary rounded-full h-10 w-10 flex items-center justify-center">
+            <img src="/src/assets/Logo-removebg-preview.png" alt="" />
+          </figure>
           <div className="flex items-center  gap-5 text-sm">
             <Link to="/">Home</Link>
             <Link to="/projects">Projects</Link>
@@ -22,7 +24,7 @@ const Navbar = () => {
         </nav>
       </div>
       {/* <button onClick={logout}>Logout</button> */}
-    </div>
+    </nav>
   );
 };
 export default Navbar;

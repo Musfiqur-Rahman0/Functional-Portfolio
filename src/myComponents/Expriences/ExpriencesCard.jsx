@@ -7,11 +7,10 @@ const ExpriencesCard = () => {
         <div className='grid grid-cols-2 gap-10 mt-10 relative '>
             {/* background circle */}
             <BackgroundCirlcle/>
-           <Card/>
-           <Card/>
-           <Card/>
-           <Card/>
-            
+           <Card position="top-left"/>
+           <Card position="bottom-left"/>
+           <Card position="top-right"/>
+           <Card position="bottom-right"/>     
         </div>
     );
 };

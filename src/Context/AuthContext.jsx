@@ -1,61 +1,80 @@
-import { auth, db } from "@/firebase/firebase.init";
-import { onAuthStateChanged } from "firebase/auth";
-import { addDoc, collection, getDocs } from "firebase/firestore";
+import { addDoc, collection, getDocs, onSnapshot } from "firebase/firestore";
+import { db } from "@/firebase/firebase.init";
 import { createContext, useEffect, useState } from "react";
+import { GlobalContext } from "./GlobalContext";
+import { use } from "react";
 
+export const AuthContext = createContext();
 
+const AuthProvider = ({ children }) => {
+  const [comments, setComments] = useState({});
+  const [commentsLoading, setCommentsLoading] = useState(true);
 
-export const AuthContext =  createContext();
+  const commentDataRef = collection(db, "comments");
 
+  const getComments = async () => {
+    try {
+      const commentData = await getDocs(commentDataRef);
+      commentData.docs.map((doc) => doc.data());
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-const AuthProvider = ({children}) => {
-    const [user, setUser] = useState(null);
-    const [isLogedIn, setIsLogedIn] = useState(false)
-    const [comments, setComments]  = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    
-    
-    const commentDataRef = collection(db, "comments")
-    const getComments = async() => {
-      try{
-       setIsLoading(true)
-          const commentData = await getDocs(commentDataRef);
-          const data = commentData.docs.map((doc)=>  doc.data());
-          setComments(data);
-      }catch(err){
-          console.error(err)
-      }finally{
-        setIsLoading(false)
-      }
-      
-  }
+  const setCommentsData = async (userComment) => {
+    try {
+      await addDoc(commentDataRef, userComment);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
-  useEffect(()=> {  
-    getComments();
-       
+  useEffect(() => {
+    const unSubscribe = onSnapshot(commentDataRef, (snapshot) => {
+      const newComments = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setComments(newComments);
+      setCommentsLoading(false);
+    });
+    return () => unSubscribe();
+  }, []);
+  return (
+    <AuthContext.Provider
+      value={{
+        comments,
+        setComments,
+        setCommentsData,
+        getComments,
+        commentsLoading,
+        setCommentsLoading,
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 
-    const unsubscribe =  onAuthStateChanged(auth, (user)=> {
-      if(user){
-        setUser(user)
-      }
-    })
-    return () => unsubscribe()
-    },[])
+  // const AuthProvider = ({ children }) => {
+  //   const [user, setUser] = useState(null);
+  //   const [isLogedIn, setIsLogedIn] = useState(false);
+  //   const [comments, setComments] = useState([]);
+  //   const [isLoading, setIsLoading] = useState(false);
 
+  //   const commentDataRef = collection(db, "comments");
+  //   const getComments = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       const commentData = await getDocs(commentDataRef);
+  //       const data = commentData.docs.map((doc) => doc.data());
+  //       setComments(data);
+  //     } catch (err) {
+  //       console.error(err);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
 
-    
-
-    // console.log(user, )
-    return  (
-        <AuthContext.Provider value={{
-            user,
-            setUser,
-            isLogedIn, 
-            setIsLogedIn,
-            isLoading,
-            setIsLoading,
-            comments
-        }}>{children}</AuthContext.Provider>
-    )
-}
+  // };
+};
 export default AuthProvider;

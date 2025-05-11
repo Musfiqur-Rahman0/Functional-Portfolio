@@ -1,9 +1,10 @@
 import React from 'react';
+import BackgroundCirlcle from '../BackgroundCirlcle';
 
 const Contactform = () => {
     return (
-        <div className="mt-6">
-      <div className="grid sm:grid-cols-2 items-start gap-12 p-8 mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
+        <div className=" my-auto flex items-center justify-center relative">
+      <div className="z-10 grid sm:grid-cols-2 items-start gap-12 p-8 mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
         <div>
           <h1 className="text-slate-900 text-3xl font-semibold">Let's Talk</h1>
           <p className="text-sm text-slate-500 mt-4 leading-relaxed">Have some big idea or brand to develop and need help? Then reach out we'd love to hear about your project  and provide help.</p>
@@ -79,6 +80,7 @@ const Contactform = () => {
             className="text-white bg-blue-500 hover:bg-blue-600 rounded-md text-[15px] font-medium px-4 py-2 w-full !mt-6">Send</button>
         </form>
       </div>
+      <BackgroundCirlcle />
     </div>
     );
 };

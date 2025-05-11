@@ -2,9 +2,9 @@ import Contactform from "@/myComponents/contactForm/Contactform";
 import React from "react";
 
 const Contact = () => {
-  return <div>
+  return <>
     <Contactform/>
-  </div>;
+  </>;
 };
 
 export default Contact;
