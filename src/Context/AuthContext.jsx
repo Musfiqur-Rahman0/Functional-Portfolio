@@ -1,6 +1,5 @@
-import { db } from "@/firebase/firebase.init";
 import { addDoc, collection, getDocs, onSnapshot } from "firebase/firestore";
-
+import { db } from "@/firebase/firebase.init";
 import { createContext, useEffect, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { use } from "react";
@@ -10,7 +9,6 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [comments, setComments] = useState({});
   const [commentsLoading, setCommentsLoading] = useState(true);
-  const { setLoading } = use(GlobalContext);
 
   const commentDataRef = collection(db, "comments");
 
@@ -42,17 +40,41 @@ const AuthProvider = ({ children }) => {
     });
     return () => unSubscribe();
   }, []);
-
   return (
     <AuthContext.Provider
       value={{
         comments,
+        setComments,
         setCommentsData,
+        getComments,
         commentsLoading,
+        setCommentsLoading,
       }}
     >
       {children}
     </AuthContext.Provider>
   );
+
+  // const AuthProvider = ({ children }) => {
+  //   const [user, setUser] = useState(null);
+  //   const [isLogedIn, setIsLogedIn] = useState(false);
+  //   const [comments, setComments] = useState([]);
+  //   const [isLoading, setIsLoading] = useState(false);
+
+  //   const commentDataRef = collection(db, "comments");
+  //   const getComments = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       const commentData = await getDocs(commentDataRef);
+  //       const data = commentData.docs.map((doc) => doc.data());
+  //       setComments(data);
+  //     } catch (err) {
+  //       console.error(err);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  // };
 };
 export default AuthProvider;

@@ -15,35 +15,26 @@ const month = new Intl.DateTimeFormat("en-US", { month: "short" }).format(date);
 const todayDate = `${month} ${day}, ${year}`;
 const Comments = () => {
   const [comment, setComment] = useInputHook("");
+  const { login } = useAuth();
+  const { comments, isLoading, commentsLoading } = useContext(AuthContext);
 
-  const { user, loading, isLogedIn } = useContext(GlobalContext);
-  const { comments, commentsLoading, setCommentsData } =
-    useContext(AuthContext);
-
+  console.log(comments);
   const handleCommentData = (e) => {
     e.preventDefault();
-    const newUserComment = {
-      firstName: user?.displayName.split(" ")[0] || "Guest",
-      avatar:
-        user?.photoURL ||
-        "https://i.ibb.co.com/pv51StnP/5856-removebg-preview.png",
-      comment: comment,
-      publishedTime: todayDate,
-      uid: user?.uid || null,
-    };
-
-    !isLogedIn
-      ? login()
-      : (setCommentsData(newUserComment),
-        toast.success("Comment post as", user?.email));
+    login();
+    console.log(comment);
   };
 
+  if (isLoading) {
+    return <p>Loading...</p>;
+  }
+
   return (
-    <section className="bg-white w-full dark:bg-gray-900 py-8 lg:py-16 antialiased">
+    <section className="bg-slate-900 rounded-lg w-full  py-8 lg:py-16 antialiased">
       <div className=" w-[90%]  mx-auto px-4">
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg lg:text-2xl font-bold text-gray-900 dark:text-white">
-            Total Reviews ({comments.length})
+            Total Reviews (20)
           </h2>
         </div>
         <form className="mb-6">
@@ -70,11 +61,13 @@ const Comments = () => {
             Post comment
           </Button>
         </form>
-        {commentsLoading ? (
-          <p>loading....</p>
-        ) : (
-          comments?.map((data, i) => <Comment key={i} commentData={data} />)
-        )}
+        <div className="space-y-4">
+          {commentsLoading ? (
+            <p>loading....</p>
+          ) : (
+            comments?.map((data, i) => <Comment key={i} commentData={data} />)
+          )}
+        </div>
       </div>
     </section>
   );
