@@ -71,3 +71,5 @@ export const glowing = {
     },
   },
 };
+
+export const whatsapp = 'https://wa.me/+8801794213788?text=Hello%20there'

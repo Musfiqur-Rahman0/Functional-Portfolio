@@ -3,6 +3,7 @@ import { db } from "@/firebase/firebase.init";
 import { createContext, useEffect, useState } from "react";
 import { GlobalContext } from "./GlobalContext";
 import { use } from "react";
+import { toast } from "sonner";
 
 export const AuthContext = createContext();
 
@@ -24,6 +25,7 @@ const AuthProvider = ({ children }) => {
   const setCommentsData = async (userComment) => {
     try {
       await addDoc(commentDataRef, userComment);
+      toast.success("Successfully added the comment")
     } catch (error) {
       console.error(error.message);
     }

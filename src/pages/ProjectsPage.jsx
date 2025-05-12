@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { whatsapp } from "@/consents/data";
 import ProjectCard from "@/myComponents/ProjectCard";
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
@@ -89,7 +90,9 @@ const ProjectsPage = () => {
       </div>
        <div className="py-12 text-center space-y-3">
        <h2 className="text-4xl font-bold  text-shadow-2xl">Want to explore more? Let's build something amazing together</h2>
-       <Button className="rounded-full cursor-pointer">Get In touch</Button>
+      <Button className="rounded-full cursor-pointer">
+          <a href={whatsapp} target="_blank">Get In Touch</a>
+      </Button>
      </div>
     </div>
   );

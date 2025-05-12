@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { glowing } from "@/consents/data";
+import { glowing, whatsapp } from "@/consents/data";
 import { motion } from "framer-motion";
 import React from "react";
 
@@ -30,7 +30,9 @@ const HeroSection = () => {
         </p>
       </div>
       <div className="flex items-center gap-5">
-        <Button className="rounded-full cursor-pointer">Get In Touch</Button>
+        <Button  className="rounded-full cursor-pointer">
+          <a href={whatsapp} target="_blank">Get In Touch</a>
+        </Button>
         <Button
           variant="outline"
           className="text-black rounded-full cursor-pointer"

@@ -14,6 +14,8 @@ const Home = () => {
   const projects = useLoaderData();
   const navigate = useNavigate();
 
+
+
   return (
     <div>
       <div className=" mx-auto px-4 py-2  space-y-24">
@@ -55,7 +57,7 @@ const Home = () => {
               </h2>
               <p className="text-xl">
                 {" "}
-                that values improving people's lives through accessible design{" "}
+                that values improving people's lives through accessible Web App{" "}
               </p>
             </div>
             <Technologies />

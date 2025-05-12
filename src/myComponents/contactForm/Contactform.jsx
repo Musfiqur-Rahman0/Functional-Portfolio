@@ -1,16 +1,38 @@
 import React from 'react';
 import BackgroundCirlcle from '../BackgroundCirlcle';
+import { toast } from 'sonner';
 
 const Contactform = () => {
+
+
+  const handleContactForm = e => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const subject =e.target.subject.value;
+    const message = e.target.message.value;
+
+    const  userQueary = {
+      name, 
+      email,
+      subject,
+      message
+    }
+    console.log(userQueary);
+    toast.success("Thanks for your information though this functionality hasn't been added yet. ")
+
+   
+  }
+
     return (
         <div className=" my-auto flex items-center justify-center relative">
-      <div className="z-10 grid sm:grid-cols-2 items-start gap-12 p-8 mx-auto max-w-4xl bg-white shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
+      <div className="z-10 grid sm:grid-cols-2 items-start gap-12 p-8 mx-auto max-w-4xl bg-gradient-to-br to-[#2C1250] from-[#2C1250] shadow-[0_2px_10px_-3px_rgba(6,81,237,0.3)] rounded-md">
         <div>
-          <h1 className="text-slate-900 text-3xl font-semibold">Let's Talk</h1>
-          <p className="text-sm text-slate-500 mt-4 leading-relaxed">Have some big idea or brand to develop and need help? Then reach out we'd love to hear about your project  and provide help.</p>
+          <h1 className=" text-3xl font-semibold">Let's Talk</h1>
+          <p className="text-sm  mt-4 leading-relaxed">Have some big idea or brand to develop and need help? Then reach out we'd love to hear about your project  and provide help.</p>
 
           <div className="mt-12">
-            <h2 className="text-slate-900 text-base font-semibold">Email</h2>
+            <h2 className=" text-base font-semibold">Email</h2>
             <ul className="mt-4">
               <li className="flex items-center">
                 <div className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
@@ -22,7 +44,7 @@ const Contactform = () => {
                   </svg>
                 </div>
                 <a href="javascript:void(0)" className="text-sm ml-4">
-                  <small className="block text-slate-900">Mail</small>
+                  <small className="block ">Mail</small>
                   <span className="text-blue-600 font-medium">info@example.com</span>
                 </a>
               </li>
@@ -30,7 +52,7 @@ const Contactform = () => {
           </div>
 
           <div className="mt-12">
-            <h2 className="text-slate-900 text-base font-semibold">Socials</h2>
+            <h2 className=" text-base font-semibold">Socials</h2>
 
             <ul className="flex mt-4 space-x-4">
               <li className="bg-[#e6e6e6cf] h-10 w-10 rounded-full flex items-center justify-center shrink-0">
@@ -66,18 +88,18 @@ const Contactform = () => {
             </ul>
           </div>
         </div>
-
-        <form className="space-y-4">
-          <input type='text' placeholder='Name'
-            className="w-full text-slate-900 rounded-md py-2.5 px-4 border text-sm outline-none focus:border-blue-500" />
-          <input type='email' placeholder='Email'
-            className="w-full text-slate-900 rounded-md py-2.5 px-4 border text-sm outline-none focus:border-blue-500" />
-          <input type='text' placeholder='Subject'
-            className="w-full text-slate-900 rounded-md py-2.5 px-4 border text-sm outline-none focus:border-blue-500" />
-          <textarea placeholder='Message' rows="6"
-            className="w-full text-slate-900 rounded-md px-4 border text-sm pt-2.5 outline-none focus:border-blue-500"></textarea>
-          <button type='button'
-            className="text-white bg-blue-500 hover:bg-blue-600 rounded-md text-[15px] font-medium px-4 py-2 w-full !mt-6">Send</button>
+          {/* actuall contact form */}
+        <form onSubmit={handleContactForm} className="space-y-4">
+          <input type='text' placeholder='Name' name='name' required
+            className="w-full  rounded-md py-2.5 px-4 border text-sm outline-none focus:border-blue-500" />
+          <input type='email' placeholder='Email' name="email" required
+            className="w-full  rounded-md py-2.5 px-4 border text-sm outline-none focus:border-blue-500" />
+          <input type='text' placeholder='Subject' name='subject' required
+            className="w-full  rounded-md py-2.5 px-4 border text-sm outline-none focus:border-blue-500" />
+          <textarea placeholder='Message' name='message' required rows="6"
+            className="w-full  rounded-md px-4 border text-sm pt-2.5 outline-none focus:border-blue-500"></textarea>
+          <button type='submit'
+            className="text-white bg-primary cursor-pointer rounded-md text-[15px] font-medium px-4 py-2 w-full !mt-6">Send</button>
         </form>
       </div>
       <BackgroundCirlcle />
