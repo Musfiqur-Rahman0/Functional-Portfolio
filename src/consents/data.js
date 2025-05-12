@@ -72,4 +72,49 @@ export const glowing = {
   },
 };
 
-export const whatsapp = 'https://wa.me/+8801794213788?text=Hello%20there'
+export const whatsapp = 'https://wa.me/+8801794213788?text=Hello%20there';
+
+export const navItems = [
+  {
+    name :"home",
+    pathName : "/"
+  },
+  {
+    name :"projects",
+    pathName : "/projects"
+  },
+  {
+    name : "about",
+    pathName : "/about"
+  },
+  {
+    name :"contact",
+    pathName : "/contact"
+  },
+]
+
+
+
+export const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
+ export const itemVariants = {
+    hidden : {opacity : 0, y : 20},
+    visible : {opacity : 1, y : 0}
+  }
+
+
+export  const blurVariant = {
+    hidden : {
+      opacity : 0,
+      filter: "blur(10px)",
+      y : 20
+    },
+    visible :{
+      opacity : 1,
+      filter: "blur(0px)",
+      y : 0
+    }
+  }

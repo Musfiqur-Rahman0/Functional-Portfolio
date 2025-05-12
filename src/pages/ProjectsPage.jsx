@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
-import { whatsapp } from "@/consents/data";
+import { containerVariants, itemVariants, whatsapp } from "@/consents/data";
 import ProjectCard from "@/myComponents/ProjectCard";
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 
@@ -40,6 +41,7 @@ const ProjectsPage = () => {
     fetchCategoryData();
   }, []);
 
+  
   return (
     <div className="w-full ">
      <div className="text-center py-12 space-y-1">
@@ -77,13 +79,14 @@ const ProjectsPage = () => {
           filteredProjects.map((project, index) => (
             //   <Projects project={project} order={isEven(index) ? "reversed" : ""} />
             <ProjectCard
+              variant={itemVariants}
               key={index}
               project={project}
               reversed={isEven(index)}
             />
           ))
         ) : (
-          <div className="h-screen w-full flex items-center justify-center text-5xl">
+          <div  className="h-screen w-full flex items-center justify-center text-5xl">
             <h2>NOthing heree</h2>
           </div>
         )}

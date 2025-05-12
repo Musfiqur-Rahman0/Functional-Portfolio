@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { blurVariant } from "@/consents/data";
 import Exprience from "@/myComponents/Exprience";
 import Expriences from "@/myComponents/Expriences";
 import ExpriencesCard from "@/myComponents/Expriences/ExpriencesCard";
@@ -6,6 +7,7 @@ import HeroSection from "@/myComponents/HeroSection";
 import ProjectCard from "@/myComponents/ProjectCard";
 import Projects from "@/myComponents/Projects";
 import Technologies from "@/myComponents/Technologies";
+import { motion } from "framer-motion";
 
 import React, { use } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
@@ -15,7 +17,7 @@ const Home = () => {
   const navigate = useNavigate();
 
 
-
+motion
   return (
     <div>
       <div className=" mx-auto px-4 py-2  space-y-24">
@@ -49,7 +51,14 @@ const Home = () => {
           <ExpriencesCard />
         </section>
         <section id="tech" className="mt-40 space-y-24">
-          <div>
+          <motion.div
+          variants={blurVariant}
+          initial="hidden"
+          whileInView="visible"
+          transition={{
+            duration: 0.8
+          }}
+          >
             <div className="max-w-[70%] text-center mx-auto space-y-2">
               <h2 className="text-3xl font-bold text-white text-center">
                 I'm currently looking to join a{" "}
@@ -61,7 +70,7 @@ const Home = () => {
               </p>
             </div>
             <Technologies />
-          </div>
+          </motion.div>
           <div className="max-w-[70%] mx-auto"></div>
         </section>
       </div>

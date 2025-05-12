@@ -29,7 +29,6 @@ const Comments = () => {
     publishedTime : todayDate,
 
   }
-
   user &&  setCommentsData(newComment)
   
   };
