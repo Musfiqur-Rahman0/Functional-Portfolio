@@ -19,7 +19,7 @@ const ProjectCard = ({ project, reversed }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="mt-5 grid grid-cols-3 gap-8 border-t border-[#693B93]  bg-gradient-to-br to-[#] from-[#2C1250] backdrop-blur-sm   p-8 rounded-2xl shadow-xl shadow-slate-900/30">
+    <div className="mt-5 grid  md:grid-cols-3 gap-8 border-t border-[#693B93]  bg-gradient-to-br to-[#] from-[#2C1250] backdrop-blur-sm  p-3  md:p-8 rounded-2xl shadow-xl shadow-slate-900/30">
       <figure
         onClick={() => navigate(`/project/${id}`)}
         className={`w-full ${
@@ -33,7 +33,7 @@ const ProjectCard = ({ project, reversed }) => {
         />
       </figure>
       <div
-        className={`p-3 w-full  !text-white col-span-2  space-y-3 md:space-y-5 ${
+        className={`p-3 w-full  !text-white md:col-span-2  space-y-3 md:space-y-5 ${
           reversed ? "order-1" : "order-2"
         }`}
       >

@@ -8,13 +8,14 @@ import PrivetRoute from "./routes/PrivetRoute";
 import ProjectsDetails from "./pages/ProjectsDetails";
 import ProjectsPage from "./pages/ProjectsPage";
 import GlobalProvider from "./Context/GlobalContext";
+import ThreeDotsWave from "./pages/ThreeDotsWave";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
-      hydrateFallbackElement: <p>Loading...</p>,
+      hydrateFallbackElement: <ThreeDotsWave />,
       errorElement: <p>Error page</p>,
       children: [
         {
@@ -40,7 +41,7 @@ function App() {
           path: "contact",
           element: (
             // <PrivetRoute>
-              <Contact />
+            <Contact />
             // </PrivetRoute>
           ),
         },

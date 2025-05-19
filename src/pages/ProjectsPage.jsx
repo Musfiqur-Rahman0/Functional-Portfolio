@@ -41,16 +41,18 @@ const ProjectsPage = () => {
 
   return (
     <div className="w-full ">
-     <div className="text-center py-12 space-y-1">
-       <h2 className="text-6xl font-bold  text-shadow-2xl">Crafted With Passion</h2>
-       <p className="text-lg ">
-        Showcasing apps that merge creativity with functionality.
-       </p>
-     </div>
+      <div className="text-center py-12 space-y-1">
+        <h2 className=" text-3xl md:text-4xl xl:text-6xl font-bold  text-shadow-2xl">
+          Crafted With Passion
+        </h2>
+        <p className="text-sm md:text-lg text-gray-400 ">
+          Showcasing apps that merge creativity with functionality.
+        </p>
+      </div>
       <div className="w-full flex items-center justify-between">
         <div>
-          <h2 className="text-3xl font-bold  ">PROJECTS</h2>
-          <p className=" text-lg mt-2">
+          <h2 className="text-2xl md:text-3xl font-bold  ">PROJECTS</h2>
+          <p className="text-[0.6rem] md:text-lg md:mt-2">
             Here are some of my projects that I have worked on.
           </p>
         </div>
@@ -63,7 +65,7 @@ const ProjectsPage = () => {
                 key={c.id}
                 onClick={() => setSelectedCategory(c.name)}
                 variant="secondary"
-                className="capitalize cursor-pointer"
+                className="capitalize cursor-pointer text-[0.7rem]"
               >
                 {c.name}
               </Button>
@@ -71,7 +73,7 @@ const ProjectsPage = () => {
           )}
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-10">
+      <div className="grid grid-cols-1 gap-10 p-3 md:p-0">
         {filteredProjects.length !== 0 ? (
           filteredProjects.map((project, index) => (
             //   <Projects project={project} order={isEven(index) ? "reversed" : ""} />
@@ -87,10 +89,12 @@ const ProjectsPage = () => {
           </div>
         )}
       </div>
-       <div className="py-12 text-center space-y-3">
-       <h2 className="text-4xl font-bold  text-shadow-2xl">Want to explore more? Let's build something amazing together</h2>
-       <Button className="rounded-full cursor-pointer">Get In touch</Button>
-     </div>
+      <div className="py-12 text-center space-y-3">
+        <h2 className="text-3xl md:text-4xl font-bold  text-shadow-2xl">
+          Want to explore more? Let's build something amazing together
+        </h2>
+        <Button className="rounded-full cursor-pointer">Get In touch</Button>
+      </div>
     </div>
   );
 };
