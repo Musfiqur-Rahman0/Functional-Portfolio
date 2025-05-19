@@ -1,5 +1,7 @@
 import { Button } from "@/components/ui/button";
+import { containerVariants, itemVariants, whatsapp } from "@/consents/data";
 import ProjectCard from "@/myComponents/ProjectCard";
+import { motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 
@@ -78,6 +80,7 @@ const ProjectsPage = () => {
           filteredProjects.map((project, index) => (
             //   <Projects project={project} order={isEven(index) ? "reversed" : ""} />
             <ProjectCard
+              variant={itemVariants}
               key={index}
               project={project}
               reversed={isEven(index)}
@@ -89,11 +92,16 @@ const ProjectsPage = () => {
           </div>
         )}
       </div>
+
       <div className="py-12 text-center space-y-3">
         <h2 className="text-3xl md:text-4xl font-bold  text-shadow-2xl">
           Want to explore more? Let's build something amazing together
         </h2>
-        <Button className="rounded-full cursor-pointer">Get In touch</Button>
+        <Button className="rounded-full cursor-pointer">
+          <a href={whatsapp} target="_blank">
+            Get In Touch
+          </a>
+        </Button>
       </div>
     </div>
   );

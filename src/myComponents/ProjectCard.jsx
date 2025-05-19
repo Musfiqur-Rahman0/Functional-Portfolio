@@ -1,5 +1,8 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
+import { blurVariant, containerVariants, itemVariants } from "@/consents/data";
+import { motion } from "framer-motion";
+import { IterationCcw } from "lucide-react";
 import React from "react";
 import { MdLocationPin, MdOutlineArrowOutward } from "react-icons/md";
 import { Link, useNavigate } from "react-router";
@@ -26,7 +29,13 @@ const ProjectCard = ({ project, reversed }) => {
           reversed ? "order-2" : "order-1"
         } overflow-hidden rounded-lg`}
       >
-        <img
+        <motion.img
+          variants={blurVariant}
+          initial="hidden"
+          whileInView="visible"
+          transition={{
+            duration: 1,
+          }}
           className="h-full w-full object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300"
           src={projectImage}
           alt={name}
@@ -45,7 +54,15 @@ const ProjectCard = ({ project, reversed }) => {
             <span className=" text-sm">{type}</span>
           </div>
         </div>
-        <div className="space-y-3 py-2  ">
+        <motion.div
+          variants={blurVariant}
+          initial="hidden"
+          whileInView="visible"
+          transition={{
+            duration: 0.5,
+          }}
+          className="space-y-3 py-2  "
+        >
           <h2 className="mb-2 text-3xl md:text-3xl font-bold tracking-tight  dark:text-white">
             Project-{name}
           </h2>
@@ -58,7 +75,7 @@ const ProjectCard = ({ project, reversed }) => {
             </div> */}
             {/* <p className="font-semibold ml-8">Entry Fee : {entry_fee} Taka</p> */}
           </div>
-        </div>
+        </motion.div>
         <Link to={`/project/${id}`} className="w-fit">
           <Button
             variant="contained"

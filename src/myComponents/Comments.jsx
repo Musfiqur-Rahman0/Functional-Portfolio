@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button";
 import useAuth from "@/hooks/useAuth";
 import { AuthContext } from "@/Context/AuthContext";
 import { GlobalContext } from "@/Context/GlobalContext";
-import { User } from "lucide-react";
-import { toast } from "sonner";
 
 const date = new Date();
 const day = date.getDate();
@@ -16,13 +14,20 @@ const todayDate = `${month} ${day}, ${year}`;
 const Comments = () => {
   const [comment, setComment] = useInputHook("");
   const { login } = useAuth();
-  const { comments, isLoading, commentsLoading } = useContext(AuthContext);
+  const { comments, isLoading, commentsLoading, setCommentsData } =
+    useContext(AuthContext);
+  const { user } = useContext(GlobalContext);
 
-  console.log(comments);
   const handleCommentData = (e) => {
     e.preventDefault();
-    login();
-    console.log(comment);
+    !user && login();
+    const newComment = {
+      firstname: user?.displayName.split(" ")[0] || "Guest",
+      comment,
+      avatar: user?.photoURL || "",
+      publishedTime: todayDate,
+    };
+    user && setCommentsData(newComment);
   };
 
   if (isLoading) {

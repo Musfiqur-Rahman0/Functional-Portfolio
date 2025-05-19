@@ -27,7 +27,7 @@
   },
   {
     "id": "phudu-health-002",
-    "live" : "https://eventio-e228a.web.app/",
+    "live" : "https://phudu-health.netlify.app",
     "github" : "https://github.com/Musfiqur-Rahman0/Functional-Portfolio",
     "name": "Phudu-Health",
     "type": "Healthcare Web Application",
@@ -52,8 +52,8 @@
   },
   {
     "id": "ticket-gen-003",
-    "live" : "https://eventio-e228a.web.app/",
-    "github" : "https://github.com/Musfiqur-Rahman0/Functional-Portfolio",
+    "live" : "https://conferenceticketgenerator203.netlify.app",
+    "github" : "https://github.com/Musfiqur-Rahman0/Conference-ticket-generator",
     "name": "Conference Ticket Generator",
     "type": "Tool",
     "category": "Frontend App",
@@ -76,8 +76,8 @@
   {
     "id": "nagad-004",
     "name": "Nagad (Landing Page)",
-    "live" : "https://eventio-e228a.web.app/",
-    "github" : "https://github.com/Musfiqur-Rahman0/Functional-Portfolio",
+    "live" : "https://nagadclone.netlify.app",
+    "github" : "https://github.com/Musfiqur-Rahman0/Nagad-clone-",
     "type": "Landing Page",
     "category": "Web Design",
     "purpose": "Promotional landing page for a digital wallet or fintech service.",
@@ -100,8 +100,8 @@
   {
     "id": "blackboast-005",
     "name": "Blackboast",
-    "live" : "https://eventio-e228a.web.app/",
-    "github" : "https://github.com/Musfiqur-Rahman0/Functional-Portfolio",
+    "live" : "https://blackboast.netlify.app",
+    "github" : "https://github.com/Musfiqur-Rahman0/daraz-product-page-clone",
     "type": "E-commerce Web Application",
     "category": "Frontend App",
     "purpose": "An e-commerce platform where users can browse, filter, and manage products within a cart system.",
@@ -124,8 +124,8 @@
   },
   {
     "id": "product-motion-006",
-    "live" : "https://eventio-e228a.web.app/",
-    "github" : "https://github.com/Musfiqur-Rahman0/Functional-Portfolio",
+    "live" : "https://productpageproject.netlify.app/",
+    "github" : "https://github.com/Musfiqur-Rahman0/Product-page-with-reactjs-taiwind-and-framer-motion",
     "name": "Product Page with Framer Motion",
     "type": "UI Design",
     "category": "Web Design",

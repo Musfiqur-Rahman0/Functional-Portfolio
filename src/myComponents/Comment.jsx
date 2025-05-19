@@ -1,7 +1,10 @@
 import React from "react";
 
 const Comment = ({ commentData }) => {
-  const { firstName, comment, avatar, publishedTime } = commentData;
+  const { firstname, comment, avatar, publishedTime } = commentData;
+
+  console.log(commentData, firstname);
+
   return (
     <article className="p-6 text-base  rounded-lg ">
       <footer className="flex justify-between items-center mb-2">
@@ -12,7 +15,7 @@ const Comment = ({ commentData }) => {
               src={avatar}
               alt="Michael Gough"
             />
-            {firstName}
+            {firstname}
           </p>
           <p className="text-sm ">
             <time dateTime="2022-02-08" title="February 8th, 2022">

@@ -8,7 +8,13 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FaMeta } from "react-icons/fa6";
-import { SiExpress, SiFirebase, SiMongodb, SiShadcnui, SiTailwindcss } from "react-icons/si";
+import {
+  SiExpress,
+  SiFirebase,
+  SiMongodb,
+  SiShadcnui,
+  SiTailwindcss,
+} from "react-icons/si";
 import { TbBrandFramerMotion } from "react-icons/tb";
 
 export const experienceData = [
@@ -57,7 +63,7 @@ export const aboutMe = `  Lorem ipsum dolor sit amet consectetur adipisicing eli
         Maiores exercitationem voluptate, dolor eius quis reiciendis doloremque doloribus vel perferendis mollitia dignissimos repellat odio commodi reprehenderit blanditiis architecto iusto culpa perspiciatis eos ut quidem ad tenetur velit? Quibusdam, deleniti?
         Quod, ex sint praesentium earum quas non ut labore doloremque iusto? Labore distinctio nisi, sapiente rerum impedit asperiores maxime, dolore eos consequuntur natus optio excepturi adipisci consequatur error earum culpa.
         Modi eligendi facere distinctio nemo sit doloremque labore consectetur odio, illo exercitationem voluptatibus at expedita quas dignissimos velit facilis incidunt mollitia possimus consequuntur deserunt! Autem ullam ad quod cupiditate quaerat!
-        Perferendis dolorum velit rerum ab ratione reiciendis consequuntur facere accusantium repellendus iusto eligendi perspiciatis enim, quae expedita atque, animi blanditiis, nobis dolorem labore esse recusandae excepturi facilis laborum! Quidem, possimus!`
+        Perferendis dolorum velit rerum ab ratione reiciendis consequuntur facere accusantium repellendus iusto eligendi perspiciatis enim, quae expedita atque, animi blanditiis, nobis dolorem labore esse recusandae excepturi facilis laborum! Quidem, possimus!`;
 
 export const glowing = {
   glow: {
@@ -69,5 +75,49 @@ export const glowing = {
       repeatType: "reverse",
       repeat: Infinity,
     },
+  },
+};
+
+export const whatsapp = "https://wa.me/+8801794213788?text=Hello%20there";
+
+export const navItems = [
+  {
+    name: "home",
+    pathName: "/",
+  },
+  {
+    name: "projects",
+    pathName: "/projects",
+  },
+  {
+    name: "about",
+    pathName: "/about",
+  },
+  {
+    name: "contact",
+    pathName: "/contact",
+  },
+];
+
+export const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
+export const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+export const blurVariant = {
+  hidden: {
+    opacity: 0,
+    filter: "blur(10px)",
+    y: 20,
+  },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    y: 0,
   },
 };

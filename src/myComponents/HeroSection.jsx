@@ -1,6 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
-import { glowing } from "@/consents/data";
+import { blurVariant, glowing, whatsapp } from "@/consents/data";
 import { motion } from "framer-motion";
 import React from "react";
 
@@ -18,7 +18,15 @@ const HeroSection = () => {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
       </div>
-      <div className="text-center space-y-3 w-4/5">
+      <motion.div
+        variants={blurVariant}
+        initial="hidden"
+        whileInView="visible"
+        transition={{
+          duration: 1,
+        }}
+        className="text-center space-y-3 w-4/5"
+      >
         <h1 className="text-4xl md:text-5xl xl:text-6xl  font-bold text-center">
           I do code and make content <span className="">about it!</span>
         </h1>
@@ -28,7 +36,7 @@ const HeroSection = () => {
           expertise lies in crafting robust and scalable SaaS-based
           architectures on the Amazon AWS platform.
         </p>
-      </div>
+      </motion.div>
       <div className="flex items-center gap-5">
         <Button className="rounded-full text-sm cursor-pointer">
           Get In Touch

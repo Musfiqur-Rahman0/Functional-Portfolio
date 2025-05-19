@@ -5,9 +5,10 @@ import { createContext } from "react";
 export const GlobalContext = createContext();
 
 const GlobalProvider = ({ children }) => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState(null);
   const [isLogedIn, setIsLogedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -22,6 +23,7 @@ const GlobalProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  console.log(user);
   return (
     <GlobalContext.Provider
       value={{

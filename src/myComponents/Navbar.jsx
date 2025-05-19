@@ -1,8 +1,9 @@
 import { ModeToggle } from "@/components/ui/toggleTheme/ModeToggle";
 import useAuth from "@/hooks/useAuth";
 import { use } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import BackgroundCirlcle from "./BackgroundCirlcle";
+import { navItems } from "@/consents/data";
 
 const Navbar = () => {
   const { logout } = useAuth();
@@ -15,10 +16,11 @@ const Navbar = () => {
             <img src="/src/assets/Logo-removebg-preview.png" alt="" />
           </figure>
           <div className="flex items-center  gap-5 text-sm">
-            <Link to="/">Home</Link>
-            <Link to="/projects">Projects</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
+            {navItems.map((item, i) => (
+              <NavLink key={i} to={item.pathName} className="capitalize">
+                {item.name}
+              </NavLink>
+            ))}
             <ModeToggle />
           </div>
         </nav>

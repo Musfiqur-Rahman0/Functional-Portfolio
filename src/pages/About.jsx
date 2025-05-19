@@ -1,7 +1,8 @@
-import { aboutMe } from "@/consents/data";
+import { aboutMe, blurVariant } from "@/consents/data";
 import { AuthContext } from "@/Context/AuthContext";
 import BackgroundCirlcle from "@/myComponents/BackgroundCirlcle";
 import Comments from "@/myComponents/Comments";
+import { motion } from "framer-motion";
 import React from "react";
 
 const About = () => {
@@ -12,10 +13,27 @@ const About = () => {
       </h2>
 
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-5 text-justify ">
-        <p>{aboutMe}</p>
-        <figure className="bg-gray-100 rounded-lg z-10">
+        <motion.p
+          variants={blurVariant}
+          initial="hidden"
+          whileInView="visible"
+          transition={{
+            duration: 0.5,
+          }}
+        >
+          {aboutMe}
+        </motion.p>
+        <motion.figure
+          variants={blurVariant}
+          initial="hidden"
+          whileInView="visible"
+          transition={{
+            duration: 1,
+          }}
+          className="bg-gray-100 rounded-lg z-10"
+        >
           {/* <img src="" alt="noImg" /> */}
-        </figure>
+        </motion.figure>
         {/* <BackgroundCirlcle /> */}
       </div>
 
