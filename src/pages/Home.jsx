@@ -58,12 +58,12 @@ const Home = () => {
               duration: 0.8,
             }}
           >
-            <div className="max-w-[70%] text-center mx-auto space-y-2">
+            <div className="w-full px-4 md:px-0 md:max-w-[70%] text-center mx-auto space-y-2">
               <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
                 I'm currently looking to join a{" "}
                 <span className="text-blue-800">cross-functional</span> team
               </h2>
-              <p className="text-xl">
+              <p className="text-[0.7rem] md:text-xl">
                 {" "}
                 that values improving people's lives through accessible Web App{" "}
               </p>

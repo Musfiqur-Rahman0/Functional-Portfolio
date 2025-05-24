@@ -144,7 +144,7 @@ const Contactform = () => {
           ></textarea>
           <button
             type="submit"
-            className="text-white bg-primary cursor-pointer rounded-md text-[15px] font-medium px-4 py-2 w-full !mt-6"
+            className="text-white dark:text-black bg-primary cursor-pointer rounded-md text-[15px] font-medium px-4 py-2 w-full !mt-6"
           >
             Send
           </button>

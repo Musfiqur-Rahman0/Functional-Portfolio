@@ -19,12 +19,12 @@ const Card = ({ position }) => {
       variants={testVariant}
       initial="initial"
       whileInView="animate"
-      className="z-10  hover:border-y hover:border-blue-500 transition-colors duration-300  grid grid-cols-4 gap-3 items-center p-8 rounded-xl border-t border-[#693B93] bg-gradient-to-br to-[#2C1250] from-[#2C1250]"
+      className="z-10  hover:border-y hover:border-blue-500 transition-colors duration-300  grid  md:grid-cols-4 items-center gap-3  p-8 rounded-xl border-t border-[#693B93] bg-gradient-to-br to-[#2C1250] from-[#2C1250]"
     >
       <figure>
-        <img src="/src/assets/Group 2.png" alt="" />
+        <img src="/src/assets/Group 2.png" alt="" className="mx-auto" />
       </figure>
-      <div className="col-span-3">
+      <div className="md:col-span-3 flex flex-col items-center md:items-start text-center md:text-left ">
         <h2 className="text-3xl font-semibold ">CIB on the Mobile</h2>
         <p className="text-sm my-1">
           Take your client onboard seamlessly by our amazing tool of digital

@@ -1,12 +1,14 @@
 import { ModeToggle } from "@/components/ui/toggleTheme/ModeToggle";
 import useAuth from "@/hooks/useAuth";
-import { use } from "react";
+import { use, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import BackgroundCirlcle from "./BackgroundCirlcle";
 import { navItems } from "@/consents/data";
+import { motion } from "framer-motion";
 
 const Navbar = () => {
   const { logout } = useAuth();
+  const [selectedPage, setSelectedPage] = useState("");
 
   return (
     <nav className="py-5 fixed w-full z-50 backdrop-blur-2xl">
@@ -17,8 +19,19 @@ const Navbar = () => {
           </figure>
           <div className="flex items-center  gap-5 text-sm">
             {navItems.map((item, i) => (
-              <NavLink key={i} to={item.pathName} className="capitalize">
+              <NavLink
+                onClick={() => setSelectedPage(i)}
+                key={i}
+                to={item.pathName}
+                className="capitalize relative"
+              >
                 {item.name}
+                {i === selectedPage && (
+                  <motion.div
+                    className="h-1 w-full rounded-xl bg-primary absolute -bottom-1"
+                    layoutId="underline"
+                  />
+                )}
               </NavLink>
             ))}
             <ModeToggle />

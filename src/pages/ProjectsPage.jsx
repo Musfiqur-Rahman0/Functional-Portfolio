@@ -2,9 +2,10 @@ import { Button } from "@/components/ui/button";
 import { containerVariants, itemVariants, whatsapp } from "@/consents/data";
 import ProjectCard from "@/myComponents/ProjectCard";
 import { motion } from "framer-motion";
+import Lottie from "lottie-react";
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
-
+import empty from "../assets/emptyFiles.json";
 const ProjectsPage = () => {
   const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -87,8 +88,14 @@ const ProjectsPage = () => {
             />
           ))
         ) : (
-          <div className="h-screen w-full flex items-center justify-center text-5xl">
-            <h2>NOthing heree</h2>
+          <div className="py-10 flex items-center justify-center text-5xl">
+            {/* <h2>NOthing heree</h2> */}
+            <Lottie
+              animationData={empty}
+              style={{
+                height: 500,
+              }}
+            />
           </div>
         )}
       </div>

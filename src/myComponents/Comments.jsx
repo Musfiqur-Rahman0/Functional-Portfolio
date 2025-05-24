@@ -18,16 +18,24 @@ const Comments = () => {
     useContext(AuthContext);
   const { user } = useContext(GlobalContext);
 
+  console.log(user);
+
   const handleCommentData = (e) => {
     e.preventDefault();
     !user && login();
+
+    const form = e.target;
+    console.log(form);
     const newComment = {
       firstname: user?.displayName.split(" ")[0] || "Guest",
-      comment,
+      comment: form.comment.value,
       avatar: user?.photoURL || "",
       publishedTime: todayDate,
     };
-    user && setCommentsData(newComment);
+    if (user) {
+      setCommentsData(newComment);
+      form.reset();
+    }
   };
 
   if (isLoading) {
@@ -42,25 +50,23 @@ const Comments = () => {
             Total Reviews (20)
           </h2>
         </div>
-        <form className="mb-6">
+        <form onSubmit={handleCommentData} className="mb-6">
           {/* to check why it is not working */}
-          <div className="py-2 px-4 mb-4 bg-gray-400 rounded-lg rounded-t-lg border ">
+          <div className="py-2 px-4 mb-4 bg-gray-800 rounded-lg rounded-t-lg border ">
             <label htmlFor="comment" className="sr-only">
               Your comment
             </label>
             <textarea
               id="comment"
               rows="6"
-              value={comment}
-              onChange={setComment}
-              className="px-0 w-full text-sm text-gray-900 border-0 focus:ring-0 focus:outline-none dark:text-white dark:placeholder-gray-400 dark:bg-gray-800"
+              name="comment"
+              className="px-0 w-full text-sm border-0 focus:ring-0 focus:outline-none  text-white dark:bg-gray-800"
               placeholder="Write a comment..."
               required
             ></textarea>
           </div>
           <Button
             type="submit"
-            onClick={handleCommentData}
             className="inline-flex items-center py-2.5 px-4 text-xs font-medium text-center cursor-pointer rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800"
           >
             Post comment

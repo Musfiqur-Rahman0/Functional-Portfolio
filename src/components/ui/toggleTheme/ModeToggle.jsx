@@ -13,7 +13,6 @@ export function ModeToggle() {
   const { setTheme } = useTheme();
   const themes = [
     "dark",
-    "light",
     "orange",
     "red",
     "rose",

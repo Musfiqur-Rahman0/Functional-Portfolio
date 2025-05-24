@@ -3,7 +3,7 @@ import React from "react";
 const Comment = ({ commentData }) => {
   const { firstname, comment, avatar, publishedTime } = commentData;
 
-  console.log(commentData, firstname);
+  // console.log(commentData, firstname);
 
   return (
     <article className="p-6 text-base  rounded-lg ">
