@@ -1,66 +1,55 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { blurVariant, glowing, whatsapp } from "@/consents/data";
-import { motion } from "framer-motion";
 import React from "react";
-import circleGlow from "../assets/Animation - 1748050319866.json";
+import circle from "../assets/testfinal.json";
 import Lottie from "lottie-react";
-import { Typewriter } from "react-simple-typewriter";
-
+import bannerImg from "../assets/banner-man.png";
+import BackgroundCirlcle from "./BackgroundCirlcle";
 const HeroSection = () => {
   return (
-    <div className="flex items-center justify-center flex-col gap-5">
-      <div className="p-8 w-full flex items-center justify-center relative ">
-        <motion.div
-          variants={glowing}
-          animate="glow"
-          className="absolute h-[90%] w-[45%] md:w-[15%] rounded-full bg-radial from-[#763CAC] to-primary blur-2xl"
-        ></motion.div>
-
-        <Avatar className="rounded-full bg-primary ">
-          <AvatarImage src="/src/assets/Avatar.png" alt="@shadcn" />
-          <AvatarFallback>CN</AvatarFallback>
-        </Avatar>
+    <div className="mt-20 grid grid-cols-2  gap-20 justify-between relative">
+      <figure className="z-10 absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 h-full ">
+        <img src={bannerImg} alt="" className="h-full " />
+      </figure>
+      <BackgroundCirlcle />
+      <div className=" ">
+        <h2 className="text-9xl font-bold text-right">Musfiqur Rahman</h2>
       </div>
-      <motion.div
-        variants={blurVariant}
-        initial="hidden"
-        whileInView="visible"
-        transition={{
-          duration: 1,
-        }}
-        className="text-center space-y-3 w-full md:w-4/5"
-      >
-        <h1 className="text-4xl md:text-5xl xl:text-6xl  font-bold text-center">
-          Developing ideas into{" "}
-          <Typewriter
-            className="text-primary"
-            words={["Reality", "Revolution", "Results"]}
-            loop
-          >
-            Reality
-          </Typewriter>
-          .
-        </h1>
-        <p className="text-[0.6rem] sm:text-sm ">
-          I am a seasoned full-stack software engineer with over 8 years of
-          professional experience, specializing in backend development. My
-          expertise lies in crafting robust and scalable SaaS-based
-          architectures on the Amazon AWS platform.
-        </p>
-      </motion.div>
-      <div className="flex items-center gap-5">
-        <a href="https://wa.me/+8801794213788" target="_blank">
-          <Button className="rounded-full text-sm cursor-pointer">
-            Get In Touch
-          </Button>
-        </a>
-        <Button
-          variant="outline"
-          className=" text-black dark:text-white text-sm rounded-full cursor-pointer"
-        >
-          Download CV
-        </Button>
+      <div className="z-10 pl-10  rounded-lg    flex items-center justify-end">
+        <div className="min-w-[40px]  space-y-5 flex flex-col items-start justify-between">
+          <Lottie
+            animationData={circle}
+            style={{
+              height: 100,
+            }}
+          />
+          <div class=" text-white flex items-center justify-center ">
+            <div class="max-w-md space-y-6">
+              <h1 class="text-3xl font-bold tracking-tight">
+                <span class=" block mb-2 text-5xl cursor-pointer">
+                  Front End{" "}
+                  <span className="text-6xl text-primary/90 hover:text-primary ">
+                    Developer
+                  </span>
+                </span>
+                <span class=" block">
+                  Based in Bangladesh, I’m A Passionate Frontend Developer .
+                </span>
+              </h1>
+
+              <p class=" text-gray-300">
+                It’s certainly not easy to get noticed in today’s marketplace.
+                Quality content marketing is what it takes to make a modern
+                brand truly shine.
+              </p>
+
+              <div class="space-y-2 text-gray-400">
+                <p>
+                  <span class="font-semibold">Phone:</span> +880 179 421 37 88
+                </p>
+                {/* <p><span class="font-semibold">E:</span> example@website.com</p> */}
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

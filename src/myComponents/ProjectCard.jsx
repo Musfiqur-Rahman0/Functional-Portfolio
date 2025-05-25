@@ -22,7 +22,15 @@ const ProjectCard = ({ project, reversed }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="mt-5 grid  md:grid-cols-3 gap-8 border-t border-[#693B93]  bg-gradient-to-br to-[#] from-[#2C1250] backdrop-blur-sm  p-3  md:p-8 rounded-2xl shadow-xl shadow-slate-900/30">
+    <motion.div
+      initial={{
+        opacity: 0,
+      }}
+      animate={{
+        opacity: 1,
+      }}
+      className="mt-5 grid  md:grid-cols-3 gap-8 border-t border-[#693B93]  bg-gradient-to-br to-[#] from-[#2C1250] backdrop-blur-sm  p-3  md:p-8 rounded-2xl shadow-xl shadow-slate-900/30"
+    >
       <figure
         onClick={() => navigate(`/project/${id}`)}
         className={`w-full ${
@@ -86,7 +94,7 @@ const ProjectCard = ({ project, reversed }) => {
           </Button>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

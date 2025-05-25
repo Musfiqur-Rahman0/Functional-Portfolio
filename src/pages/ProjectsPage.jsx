@@ -76,7 +76,20 @@ const ProjectsPage = () => {
           )}
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-10 p-3 md:p-0">
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: 20,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          transition: {
+            staggerChildren: 0.3,
+          },
+        }}
+        className="grid grid-cols-1 gap-10 p-3 md:p-0"
+      >
         {filteredProjects.length !== 0 ? (
           filteredProjects.map((project, index) => (
             //   <Projects project={project} order={isEven(index) ? "reversed" : ""} />
@@ -98,7 +111,7 @@ const ProjectsPage = () => {
             />
           </div>
         )}
-      </div>
+      </motion.div>
 
       <div className="py-12 text-center space-y-3">
         <h2 className="text-3xl md:text-4xl font-bold  text-shadow-2xl">

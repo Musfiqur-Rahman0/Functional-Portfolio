@@ -1,25 +1,38 @@
-import React from "react";
+import React, { useRef } from "react";
 import BackgroundCirlcle from "../BackgroundCirlcle";
 import { toast } from "sonner";
+import emailjs from "@emailjs/browser";
+import sooner from "sooner";
 
 const Contactform = () => {
   const handleContactForm = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const subject = e.target.subject.value;
-    const message = e.target.message.value;
+  };
+  const form = useRef();
 
-    const userQueary = {
-      name,
-      email,
-      subject,
-      message,
-    };
-    console.log(userQueary);
-    toast.success(
-      "Thanks for your information though this functionality hasn't been added yet. "
-    );
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_SERVICE_ID,
+        import.meta.env.VITE_TEMPLATE_ID,
+        form.current,
+        {
+          publicKey: import.meta.env.VITE_PUBLIC_KEY,
+        }
+      )
+      .then(
+        (result) => {
+          if (result.status === 200) {
+            toast.success("Message Send successfully.");
+            form.current.reset();
+          }
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          toast.error("Failed to send the message");
+        }
+      );
   };
 
   return (
@@ -113,18 +126,24 @@ const Contactform = () => {
           </div>
         </div>
         {/* actuall contact form */}
-        <form onSubmit={handleContactForm} className="space-y-4">
+        <form ref={form} onSubmit={sendEmail} className="space-y-4">
+          <input
+            type="text"
+            defaultValue="Musfiqur"
+            name="to_name"
+            className="hidden"
+          />
           <input
             type="text"
             placeholder="Name"
-            name="name"
+            name="user_name"
             required
             className="w-full  rounded-md py-2.5 px-4 border text-sm outline-none focus:border-blue-500"
           />
           <input
             type="email"
             placeholder="Email"
-            name="email"
+            name="user_email"
             required
             className="w-full  rounded-md py-2.5 px-4 border text-sm outline-none focus:border-blue-500"
           />
@@ -137,7 +156,7 @@ const Contactform = () => {
           />
           <textarea
             placeholder="Message"
-            name="message"
+            name="user_message"
             required
             rows="6"
             className="w-full  rounded-md px-4 border text-sm pt-2.5 outline-none focus:border-blue-500"
