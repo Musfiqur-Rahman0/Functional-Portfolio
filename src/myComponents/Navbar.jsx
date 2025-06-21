@@ -11,7 +11,7 @@ const Navbar = () => {
   const [selectedPage, setSelectedPage] = useState("");
 
   return (
-    <nav className="py-5 fixed w-full z-50 backdrop-blur-2xl">
+    <nav className="py-5 fixed w-full z-20 backdrop-blur-2xl">
       <div className=" max-w-7xl mx-auto">
         <nav className="flex items-center justify-between ">
           <figure className=" bg-gradient-to-b from-secondary to-primary rounded-full h-10 w-10 flex items-center justify-center">

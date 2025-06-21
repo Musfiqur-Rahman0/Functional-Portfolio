@@ -12,7 +12,7 @@ const ProjectCard = ({ project, reversed }) => {
     technologies,
     purpose,
     projectImage,
-    id,
+    _id,
     name,
     features,
     detailImages,
@@ -21,6 +21,7 @@ const ProjectCard = ({ project, reversed }) => {
   } = project;
   const navigate = useNavigate();
 
+  // console.log(project);
   return (
     <motion.div
       initial={{
@@ -32,7 +33,7 @@ const ProjectCard = ({ project, reversed }) => {
       className="mt-5 grid  md:grid-cols-3 gap-8 border-t border-[#693B93]  bg-gradient-to-br to-[#] from-[#2C1250] backdrop-blur-sm  p-3  md:p-8 rounded-2xl shadow-xl shadow-slate-900/30"
     >
       <figure
-        onClick={() => navigate(`/project/${id}`)}
+        onClick={() => navigate(`/project/${_id}`)}
         className={`w-full ${
           reversed ? "order-2" : "order-1"
         } overflow-hidden rounded-lg`}
@@ -84,7 +85,7 @@ const ProjectCard = ({ project, reversed }) => {
             {/* <p className="font-semibold ml-8">Entry Fee : {entry_fee} Taka</p> */}
           </div>
         </motion.div>
-        <Link to={`/project/${id}`} className="w-fit">
+        <Link to={`/project/${_id}`} className="w-fit">
           <Button
             variant="contained"
             className="cursor-pointer border border-[#693B93] rounded-full text-xs md:text-[16px] "

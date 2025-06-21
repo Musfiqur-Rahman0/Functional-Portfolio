@@ -29,12 +29,13 @@ function App() {
         },
         {
           path: "/projects",
-          loader: () => fetch("/data.json"),
+          loader: () => fetch("http://localhost:5000/projects"),
           element: <ProjectsPage />,
         },
         {
           path: "/project/:projectId",
-          loader: () => fetch("/data.json"),
+          loader: ({ params }) =>
+            fetch(`http://localhost:5000/project/${params.projectId}`),
           element: <ProjectsDetails />,
         },
         {

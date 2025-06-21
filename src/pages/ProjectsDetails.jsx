@@ -4,9 +4,10 @@ import { MdOutlineArrowOutward } from "react-icons/md";
 import { useLoaderData, useParams } from "react-router-dom";
 
 const ProjectsDetails = () => {
-  const { projectId } = useParams();
+  // const { projectId } = useParams();
   const projects = useLoaderData();
-  const singleProjects = projects.find((project) => project.id === projectId);
+  console.log(projects);
+  // const singleProjects = projects.find((project) => project.id === projectId);
   const {
     type,
     technologies,
@@ -22,7 +23,7 @@ const ProjectsDetails = () => {
     github,
     projectGoals,
     developmentProcess,
-  } = singleProjects;
+  } = projects;
 
   return (
     <div className="max-w-7xl mx-auto grid grid-cols-2 gap-5 py-16">
@@ -65,7 +66,7 @@ const ProjectsDetails = () => {
             <div>
               <h4 className="text-3xl font-bold">Key Features</h4>
               <ul className="mt-3">
-                {features.map((f, i) => (
+                {features?.map((f, i) => (
                   <li
                     key={i}
                     class="flex items-center space-x-3 rtl:space-x-reverse"
@@ -103,7 +104,7 @@ const ProjectsDetails = () => {
             <div className=" ">
               <h2 className="text-3xl font-semibold">Tech Stack</h2>
               <div className="flex  gap-4 mt-4">
-                {technologies.map((tech, index) => (
+                {technologies?.map((tech, index) => (
                   <Button
                     key={index}
                     dis
@@ -120,7 +121,7 @@ const ProjectsDetails = () => {
         <div className="space-y-5 ">
           <h2 className="text-4xl font-semibold ">Project gallery</h2>
           <div className="grid grid-cols-3 gap-4 ">
-            {detailImages.map((image, index) => (
+            {detailImages?.map((image, index) => (
               <img
                 key={index}
                 src={image}

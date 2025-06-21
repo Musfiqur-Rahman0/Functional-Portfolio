@@ -9,8 +9,9 @@ import empty from "../assets/emptyFiles.json";
 const ProjectsPage = () => {
   const [category, setCategory] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("all");
   const projects = useLoaderData();
+  const [projectsData, setProjectsData] = useState(projects);
 
   const isEven = (index) => {
     return index % 2 === 0;
@@ -20,7 +21,7 @@ const ProjectsPage = () => {
   const fetchCategoryData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/category.json");
+      const res = await fetch("http://localhost:5000/categories");
       const data = await res.json();
       setCategory(data);
       setLoading(false);
@@ -30,18 +31,38 @@ const ProjectsPage = () => {
     }
   };
 
-  const filteredProjects = selectedCategory
-    ? projects.filter(
-        (project) =>
-          project.category.trim().toLowerCase() ===
-          selectedCategory.trim().toLowerCase()
-      )
-    : projects;
+  // const filteredProjects = selectedCategory
+  //   ? projects.filter(
+  //       (project) =>
+  //         project.category.trim().toLowerCase() ===
+  //         selectedCategory.trim().toLowerCase()
+  //     )
+  //   : projects;
+
+  const fetchProductsByCategory = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch(
+        `http://localhost:5000/projects?category=${selectedCategory}`
+      );
+      const data = await res.json();
+      setProjectsData(data);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     fetchCategoryData();
   }, []);
 
+  useEffect(() => {
+    fetchProductsByCategory();
+  }, [selectedCategory]);
+
+  console.log(selectedCategory);
   return (
     <div className="w-full ">
       <div className="text-center py-12 space-y-1">
@@ -63,16 +84,25 @@ const ProjectsPage = () => {
           {loading ? (
             <p>loading...</p>
           ) : (
-            category?.map((c) => (
+            <>
               <Button
-                key={c.id}
-                onClick={() => setSelectedCategory(c.name)}
+                onClick={() => setSelectedCategory("all")}
                 variant="secondary"
                 className="capitalize cursor-pointer text-[0.7rem]"
               >
-                {c.name}
+                All
               </Button>
-            ))
+              {category?.map((c) => (
+                <Button
+                  key={c.id}
+                  onClick={() => setSelectedCategory(c)}
+                  variant="secondary"
+                  className="capitalize cursor-pointer text-[0.7rem]"
+                >
+                  {c}
+                </Button>
+              ))}
+            </>
           )}
         </div>
       </div>
@@ -90,12 +120,12 @@ const ProjectsPage = () => {
         }}
         className="grid grid-cols-1 gap-10 p-3 md:p-0"
       >
-        {filteredProjects.length !== 0 ? (
-          filteredProjects.map((project, index) => (
+        {projectsData.length !== 0 ? (
+          projectsData?.map((project, index) => (
             //   <Projects project={project} order={isEven(index) ? "reversed" : ""} />
             <ProjectCard
               variant={itemVariants}
-              key={index}
+              key={project._id}
               project={project}
               reversed={isEven(index)}
             />

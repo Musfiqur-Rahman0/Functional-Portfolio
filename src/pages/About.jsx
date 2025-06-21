@@ -17,7 +17,7 @@ const About = () => {
         <motion.p
           variants={blurVariant}
           initial="hidden"
-          whileInView="visible"
+          animate="visible"
           transition={{
             duration: 0.5,
           }}

@@ -66,7 +66,7 @@ const Contactform = () => {
                 <a href="javascript:void(0)" className="text-sm ml-4">
                   <small className="block ">Mail</small>
                   <span className="text-blue-600 font-medium">
-                    info@example.com
+                    musfiqurrhaman6@gmail.com
                   </span>
                 </a>
               </li>
