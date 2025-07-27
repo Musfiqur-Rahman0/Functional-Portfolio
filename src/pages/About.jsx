@@ -1,7 +1,4 @@
 import { aboutMe, blurVariant } from "@/consents/data";
-import { AuthContext } from "@/Context/AuthContext";
-import BackgroundCirlcle from "@/myComponents/BackgroundCirlcle";
-import Comments from "@/myComponents/Comments";
 import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import React from "react";
@@ -49,8 +46,6 @@ const About = () => {
           Reviews
         </h2>
       </div>
-
-      <Comments />
     </div>
   );
 };

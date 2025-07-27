@@ -1,30 +1,82 @@
 import { AuthContext } from "@/Context/AuthContext";
 import { GlobalContext } from "@/Context/GlobalContext";
 import { auth, googleProvider } from "@/firebase/firebase.init";
-import { signInWithPopup, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signOut,
+  updateProfile,
+} from "firebase/auth";
 import React, { useContext } from "react";
+import Swal from "sweetalert2";
 
 const useAuth = () => {
-  const { setUser } = useContext(GlobalContext);
+  const { user } = useContext(GlobalContext);
 
-  const login = async () => {
+  const signUp = async (email, password, first_name, photoURL) => {
     try {
-      const userCred = await signInWithPopup(auth, googleProvider);
-      setUser(userCred.user);
-    } catch (error) {
-      console.error(error.message);
+      await createUserWithEmailAndPassword(auth, email, password);
+      const result = await updateProfile(auth.currentUser, {
+        displayName: first_name,
+        photoURL: photoURL,
+      });
+      return { success: true, result };
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        title: err.message,
+        icon: "error",
+      });
     }
   };
+
+  const login = async (email, password) => {
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+      return { success: true, result };
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        title: err.message,
+        icon: "error",
+      });
+    }
+  };
+
+  const loginWithGoogle = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      Swal.fire({
+        title: "Login successful!",
+        icon: "success",
+      });
+      return { success: true, result };
+    } catch (err) {
+      console.error(err);
+      Swal.fire({
+        title: err.message,
+        icon: "error",
+      });
+    }
+  };
+
   const logout = async () => {
     try {
-      await signOut();
-      setUser(null);
-    } catch (error) {
-      console.error(error.message);
+      const result = await signOut(auth);
+      return { success: true, result };
+    } catch (err) {
+      console.error(err);
     }
   };
 
-  return { login, logout };
+  return {
+    user,
+    signUp,
+    login,
+    loginWithGoogle,
+    logout,
+  };
 };
 
 export default useAuth;

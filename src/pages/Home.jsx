@@ -1,19 +1,11 @@
+import HeroSection from "@/components/hero/HeroSection";
 import { Button } from "@/components/ui/button";
 import { blurVariant } from "@/consents/data";
-import Exprience from "@/myComponents/Exprience";
-import Expriences from "@/myComponents/Expriences";
-import ExpriencesCard from "@/myComponents/Expriences/ExpriencesCard";
-import HeroSection from "@/myComponents/HeroSection";
-import ProjectCard from "@/myComponents/ProjectCard";
-import Projects from "@/myComponents/Projects";
-import Technologies from "@/myComponents/Technologies";
 import { motion } from "framer-motion";
-
 import React, { use } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const Home = () => {
-  const projects = useLoaderData();
   const navigate = useNavigate();
 
   motion;
@@ -26,13 +18,13 @@ const Home = () => {
             PROJECTS
           </h2>
 
-          {projects.slice(0, 2).map((project, index) => (
+          {/* {projects.slice(0, 2).map((project, index) => (
             <Projects
               project={project}
               key={index}
               order={index === 1 ? "reversed" : ""}
             />
-          ))}
+          ))} */}
           <div className="flex items-center justify-center">
             <Button
               onClick={() => navigate("/projects")}
@@ -47,7 +39,7 @@ const Home = () => {
             WORK EXPRIENCES
           </h2>
           {/* <Expriences /> */}
-          <ExpriencesCard />
+          {/* <ExpriencesCard /> */}
         </section>
         <section id="tech" className="mt-40 space-y-24">
           <motion.div
@@ -68,7 +60,7 @@ const Home = () => {
                 that values improving people's lives through accessible Web App{" "}
               </p>
             </div>
-            <Technologies />
+            {/* <Technologies /> */}
           </motion.div>
           <div className="max-w-[70%] mx-auto"></div>
         </section>
