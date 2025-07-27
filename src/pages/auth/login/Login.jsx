@@ -15,7 +15,6 @@ const Login = () => {
     const { email, password } = data;
     const res = await login(email, password);
 
-    console.log(res);
     if (res.success) {
       navigate("/");
       Swal.fire(

@@ -16,6 +16,7 @@ import Error from "@/pages/error/Error";
 import Home from "@/pages/Home";
 import DetailsPage from "@/pages/projects/DetailsPage";
 import Projects from "@/pages/projects/Projects";
+import Skills from "@/pages/skills/Skills";
 import ThreeDotsWave from "@/pages/ThreeDotsWave";
 import React from "react";
 import { createBrowserRouter } from "react-router";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "skills",
+        element: <Skills />,
       },
       {
         path: "/projects",
