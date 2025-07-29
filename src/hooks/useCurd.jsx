@@ -7,6 +7,9 @@ const useCurd = (endpoint) => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
+  // TODO I HAVE TO MAKE THIS ROLE DYNAMIC
+  const role = "admin";
+
   const read = useQuery({
     queryKey: [endpoint],
     queryFn: async () => {

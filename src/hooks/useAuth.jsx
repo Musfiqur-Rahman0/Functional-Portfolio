@@ -8,11 +8,11 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import React, { useContext } from "react";
+import React, { use, useContext } from "react";
 import Swal from "sweetalert2";
 
 const useAuth = () => {
-  const { user } = useContext(GlobalContext);
+  const { user } = use(AuthContext);
 
   const signUp = async (email, password, first_name, photoURL) => {
     try {

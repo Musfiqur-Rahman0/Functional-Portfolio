@@ -42,9 +42,13 @@ const HeroSection = () => {
                 brand truly shine.
               </p>
 
-              <div class="space-y-2 text-gray-400">
+              <div class="space-y-1 text-gray-400">
                 <p>
                   <span class="font-semibold">Phone:</span> +880 179 421 37 88
+                </p>
+                <p>
+                  <span class="font-semibold">Email:</span>{" "}
+                  musfiqurrhaman6@gmail.com
                 </p>
                 {/* <p><span class="font-semibold">E:</span> example@website.com</p> */}
               </div>

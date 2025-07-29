@@ -1,14 +1,25 @@
 import HeroSection from "@/components/hero/HeroSection";
 import { Button } from "@/components/ui/button";
 import { blurVariant } from "@/consents/data";
+import useCurd from "@/hooks/useCurd";
 import { motion } from "framer-motion";
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import ProjectCard from "./projects/ProjectsCard";
 
 const Home = () => {
   const navigate = useNavigate();
+  const limit = 3;
+  const [projects, setProjects] = useState([]);
+  const { read } = useCurd(`/projects?limit=${limit}`);
+  const { data: response, isPending, isError } = read;
 
-  motion;
+  useEffect(() => {
+    if (response) {
+      setProjects(response.data);
+    }
+  }, [response]);
+
   return (
     <div>
       <div className=" mx-auto px-4 py-2  space-y-24">
@@ -18,13 +29,13 @@ const Home = () => {
             PROJECTS
           </h2>
 
-          {/* {projects.slice(0, 2).map((project, index) => (
-            <Projects
+          {projects.map((project, index) => (
+            <ProjectCard
               project={project}
-              key={index}
-              order={index === 1 ? "reversed" : ""}
+              reversed={index % 2 === 0}
+              key={project._id}
             />
-          ))} */}
+          ))}
           <div className="flex items-center justify-center">
             <Button
               onClick={() => navigate("/projects")}
