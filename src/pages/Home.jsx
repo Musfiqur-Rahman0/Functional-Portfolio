@@ -6,20 +6,25 @@ import { motion } from "framer-motion";
 import React, { use, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import ProjectCard from "./projects/ProjectsCard";
+import ProjectCardSkeleton from "./projects/ProjectCardSkeleton ";
+import Technologies from "@/components/technologies/Technologies";
 
 const Home = () => {
   const navigate = useNavigate();
   const limit = 3;
   const [projects, setProjects] = useState([]);
+  const [projectsLoading, setProjectsLoading] = useState(true);
   const { read } = useCurd(`/projects?limit=${limit}`);
   const { data: response, isPending, isError } = read;
 
   useEffect(() => {
     if (response) {
       setProjects(response.data);
+      setProjectsLoading(isPending);
     }
-  }, [response]);
+  }, [response, isPending]);
 
+  console.log(projectsLoading);
   return (
     <div>
       <div className=" mx-auto px-4 py-2  space-y-24">
@@ -29,13 +34,21 @@ const Home = () => {
             PROJECTS
           </h2>
 
-          {projects.map((project, index) => (
-            <ProjectCard
-              project={project}
-              reversed={index % 2 === 0}
-              key={project._id}
-            />
-          ))}
+          {projectsLoading ? (
+            <>
+              <ProjectCardSkeleton />
+              <ProjectCardSkeleton reversed={true} />
+              <ProjectCardSkeleton />
+            </>
+          ) : (
+            projects.map((project, index) => (
+              <ProjectCard
+                project={project}
+                reversed={index % 2 === 0}
+                key={project._id}
+              />
+            ))
+          )}
           <div className="flex items-center justify-center">
             <Button
               onClick={() => navigate("/projects")}
@@ -67,11 +80,10 @@ const Home = () => {
                 <span className="text-blue-800">cross-functional</span> team
               </h2>
               <p className="text-[0.7rem] md:text-xl">
-                {" "}
                 that values improving people's lives through accessible Web App{" "}
               </p>
             </div>
-            {/* <Technologies /> */}
+            <Technologies />
           </motion.div>
           <div className="max-w-[70%] mx-auto"></div>
         </section>

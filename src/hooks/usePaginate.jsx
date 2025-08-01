@@ -21,18 +21,21 @@ const usePaginate = (endpoint, initialPage = 1, limit = 10) => {
     }
   }, [response]);
 
-  if (isPending) {
-    return <Loader />;
-  }
-  if (isError) {
-    return <Error />;
-  }
+  // if (isPending) {
+  //   return <p>Loading...</p>;
+  // }
+
+  // if (isError) {
+  //   return <Error />;
+  // }
 
   return {
     data,
     total,
     page,
     totalPage,
+    isPending,
+    isError,
   };
 };
 

@@ -43,6 +43,7 @@ const ProjectCard = ({ project, reversed }) => {
           variants={blurVariant}
           initial="hidden"
           animate="visible"
+          loading="lazy"
           transition={{
             duration: 1,
           }}

@@ -67,8 +67,8 @@ const Navbar = () => {
     <>
       {pages.map((page) => (
         <NavigationMenuItem key={page.id}>
-          <NavigationMenuLink href={page.path} key={page.id}>
-            {page.name}
+          <NavigationMenuLink>
+            <Link to={page.path}>{page.name}</Link>
           </NavigationMenuLink>
         </NavigationMenuItem>
       ))}

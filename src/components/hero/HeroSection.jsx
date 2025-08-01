@@ -22,32 +22,33 @@ const HeroSection = () => {
               height: 100,
             }}
           />
-          <div class=" text-white flex items-center justify-center ">
-            <div class="max-w-md space-y-6">
-              <h1 class="text-3xl font-bold tracking-tight">
-                <span class=" block mb-2 text-5xl cursor-pointer">
+          <div className=" text-white flex items-center justify-center ">
+            <div className="max-w-md space-y-6">
+              <h1 className="text-3xl font-bold tracking-tight">
+                <span className=" block mb-2 text-5xl cursor-pointer">
                   Front End{" "}
                   <span className="text-6xl text-primary/90 hover:text-primary ">
                     Developer
                   </span>
                 </span>
-                <span class=" block">
+                <span className=" block">
                   Based in Bangladesh, I’m A Passionate Frontend Developer .
                 </span>
               </h1>
 
-              <p class=" text-gray-300">
+              <p className=" text-gray-300">
                 It’s certainly not easy to get noticed in today’s marketplace.
                 Quality content marketing is what it takes to make a modern
                 brand truly shine.
               </p>
 
-              <div class="space-y-1 text-gray-400">
+              <div className="space-y-1 text-gray-400">
                 <p>
-                  <span class="font-semibold">Phone:</span> +880 179 421 37 88
+                  <span className="font-semibold">Phone:</span> +880 179 421 37
+                  88
                 </p>
                 <p>
-                  <span class="font-semibold">Email:</span>{" "}
+                  <span className="font-semibold">Email:</span>{" "}
                   musfiqurrhaman6@gmail.com
                 </p>
                 {/* <p><span class="font-semibold">E:</span> example@website.com</p> */}

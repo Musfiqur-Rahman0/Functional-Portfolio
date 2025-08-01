@@ -1,6 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
-
 import Swal from "sweetalert2";
 
 const useCurd = (endpoint) => {

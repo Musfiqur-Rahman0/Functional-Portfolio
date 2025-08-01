@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import React from "react";
 import about from "../assets/aboutAni.json";
+
 const About = () => {
   return (
     <div className="flex flex-col  justify-center pt-12 gap-10">
