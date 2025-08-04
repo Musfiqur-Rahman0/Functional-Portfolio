@@ -7,19 +7,65 @@ import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
+import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
+import useAuth from "@/hooks/useAuth";
 
 const Contact = () => {
+  const { user } = useAuth();
+  const [isSendingMail, setIsSendingMail] = useState(false);
+
   const {
     control,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      email: user?.email,
+      firstName: "",
+      lastName: "",
+      subject: "",
+      message: "",
+    },
+  });
 
-  const submitForm = (data) => {
-    console.log("data---> ", data);
+  const submitForm = async (data) => {
+    setIsSendingMail(true);
+    try {
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLETEID,
+        {
+          to_name: "Musfiqur Rahman",
+          user_name: `${data.firstName} ${data.lastName}`,
+          user_email: data.email,
+          subject: data.subject,
+          user_message: data.message,
+        },
+        import.meta.env.VITE_EMAILJS_PK
+      );
+      if (result.status === 200) {
+        reset();
+        toast.success("Message send successfully");
+      }
+    } catch (error) {
+      console.error("Failed to send email:", error);
+    } finally {
+      setIsSendingMail(false);
+    }
+
+    console.log(data);
   };
 
+  useEffect(() => {
+    if (user) {
+      reset({
+        email: user?.email,
+      });
+    }
+  }, [user]);
   return (
     <div className="w-full  mx-auto px-4 space-y-10">
       <div className="text-center">
@@ -129,6 +175,32 @@ const Contact = () => {
             />
           </div>
           <Controller
+            name="email"
+            control={control}
+            rules={{ required: "Email is required" }}
+            render={({ field }) => (
+              <div className="space-y-1 w-full">
+                <Label className="text-sm text-gray-400">Email</Label>
+                <Input
+                  {...field}
+                  readOnly
+                  className={cn(
+                    "w-full text-black px-0 border-0 border-b-4 border-primary rounded-none",
+                    "focus:outline-none focus:ring-0 focus:ring-transparent focus-visible:ring-0 focus-visible:ring-transparent",
+                    "focus:border-primary transition-colors duration-200",
+                    errors.email && "border-b-red-500"
+                  )}
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+            )}
+          />
+
+          <Controller
             name="subject"
             control={control}
             rules={{ required: "Subject is required" }}
@@ -178,8 +250,12 @@ const Contact = () => {
             )}
           />
 
-          <Button type="submit" className={"rounded-none font-bold"}>
-            Send Message
+          <Button
+            type="submit"
+            className={"rounded-none font-bold"}
+            disabled={isSendingMail}
+          >
+            {isSendingMail ? "Sending..." : "Send Message"}
           </Button>
         </form>
       </Card>

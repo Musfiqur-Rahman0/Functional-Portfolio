@@ -8,6 +8,7 @@ import { Link, useNavigate } from "react-router";
 import useAuth from "@/Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
+import { toast } from "sonner";
 
 function AuthFormBase({ fields, onSubmit, submitText, linkText, linkHref }) {
   const {
@@ -22,26 +23,26 @@ function AuthFormBase({ fields, onSubmit, submitText, linkText, linkHref }) {
   const navigate = useNavigate();
 
   const handleGoogleLogin = async () => {
-    // try {
-    //   const res = await loginWithGoogle();
-    //   if (res.success) {
-    //     navigate("/");
-    //   }
+    try {
+      const res = await loginWithGoogle();
+      if (res.success) {
+        toast.success("Login Successfull");
+        navigate("/");
+      }
 
-    //   const user = res?.result?.user;
-    //   const newUser = {
-    //     name: user?.displayName,
-    //     email: user?.email,
-    //     photoURL: user?.photoURL,
-    //     last_loged_in: new Date().toISOString(),
-    //   };
+      const user = res?.result?.user;
+      const newUser = {
+        name: user?.displayName,
+        email: user?.email,
+        photoURL: user?.photoURL,
+        last_loged_in: new Date().toISOString(),
+      };
 
-    //   await axiosInstance.post("/users", newUser);
-    // } catch (error) {
-    //   console.log(error);
-    //   Swal.fire("Error", "Failed to login", "error");
-    // }
-    console.log("login with google");
+      await axiosInstance.post("/users", newUser);
+    } catch (error) {
+      console.log(error);
+      toast.error("Error", "Failed to login", "error");
+    }
   };
 
   return (
