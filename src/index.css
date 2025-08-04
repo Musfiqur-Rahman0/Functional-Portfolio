@@ -3,6 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
 :root {
   --radius: 0.5rem;
   --background: oklch(1 0 0);
@@ -362,4 +363,8 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+[data-active="true"] {
+  background-color: rgba(55, 0, 255, 0.397);
 }

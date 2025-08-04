@@ -1,120 +1,188 @@
 import { Button } from "@/components/ui/button";
-import { Progress } from "@/components/ui/progress";
-import useAxiosSecure from "@/hooks/useAxiosSecure";
-import axios from "axios";
-import { IKContext, IKUpload } from "imagekitio-react";
+import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { cn } from "@/lib/utils";
 import React, { useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
+import { Controller, useForm } from "react-hook-form";
+import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 
 const Contact = () => {
-  // const [loading, setLoading] = useState(false);
-  // const [progress, setProgress] = useState(0);
-  // const [videoFile, setVideoFile] = useState(null);
-  // const [videoUrl, setVideoUrl] = useState(null);
-  // const axiosSecure = useAxiosSecure();
-  // const uploadRef = useRef();
+  const {
+    control,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
 
-  // const handleChange = (e) => {
-  //   const file = e.target.files[0];
-  //   setVideoFile(file);
-  // };
-
-  // const handleUpload = () => {
-  //   if (uploadRef.current) {
-  //     uploadRef.current.upload();
-  //   }
-  // };
-
-  // const publicKey = import.meta.env.VITE_IMGKIT_PK;
-  // const urlEndpoint = import.meta.env.VITE_IMGKIT_ENDPOINT;
-
-  // const authenticator = async () => {
-  //   try {
-  //     const response = await axiosSecure.get("/api/imagekit-auth");
-  //     const { signature, expire, token } = response.data;
-  //     return { signature, expire, token };
-  //   } catch (error) {
-  //     toast.error("Authentication failed");
-  //     throw new Error("ImageKit Auth failed");
-  //   }
-  // };
-
-  // const handleFileChange = (e) => {
-  //   setVideoFile(e.target.files[0]);
-  //   setVideoUrl(null);
-  //   setProgress(0);
-  // };
-
-  // useEffect(() => {
-  //   if (progress === 100) {
-  //     toast.success("Upload successful");
-  //   }
-  // }, [progress]);
+  const submitForm = (data) => {
+    console.log("data---> ", data);
+  };
 
   return (
-    <div className="max-w-lg mx-auto p-4 space-y-4">
-      {/* <p className="text-sm text-muted-foreground">
-        To use this functionality, please ensure your backend signature route is
-        working.
-      </p>
-      {/* <input
-        type="file"
-        accept="video/*"
-        onChange={handleFileChange}
-        className="block w-full text-sm file:text-sm file:bg-primary file:text-white file:rounded file:px-4 file:py-1"
-      /> */}
+    <div className="w-full  mx-auto px-4 space-y-10">
+      <div className="text-center">
+        <h2 className="text-3xl md:text-4xl font-bold   mb-1">
+          Got Something in Mind
+        </h2>
+        <p className="text-gray-400 text-sm md:text-base mb-8">
+          Let’s make it real together.
+        </p>
+      </div>
+      <Card className="grid grid-cols-10 items-center gap-5 p-3">
+        <Card
+          className={
+            "relative h-full bg-primary col-span-4  px-5 py-10 text-white overflow-hidden"
+          }
+        >
+          <div className="space-y-5 ">
+            <div>
+              <h3 className="text-2xl font-bold">Contact Information</h3>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+                harum culpa ipsa veritatis facere accusantium minus earum,
+              </p>
+            </div>
 
-      {/* <IKContext
-        publicKey={publicKey}
-        urlEndpoint={urlEndpoint}
-        authenticator={authenticator}
-      >
-        <input type="file" accept="video/*" onChange={handleChange} />
+            <div className="flex items-start gap-3">
+              <FaPhoneAlt className="mt-1" />
+              <div>
+                <p className="text-sm">Phone</p>
+                <p className="text-md font-semibold">+880 1234 567890</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <FaEnvelope className="mt-1" />
+              <div>
+                <p className="text-sm">Email</p>
+                <p className="text-md font-semibold">
+                  musfiqurrhaman6@email.com
+                </p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3">
+              <FaMapMarkerAlt className="mt-1" />
+              <div>
+                <p className="text-sm">Location</p>
+                <p className="text-md font-semibold">Dhaka, Bangladesh</p>
+              </div>
+            </div>
 
-        <IKUpload
-          ref={uploadRef}
-          file={videoFile}
-          fileName={videoFile?.name || "video.mp4"}
-          useUniqueFileName={true}
-          tags={["react-video"]}
-          onSuccess={(res) => {
-            console.log("Upload success", res.url);
-          }}
-          onError={(err) => {
-            console.error("Upload error", err);
-          }}
-          onUploadProgress={(progressEvent) => {
-            const percentage = Math.round(
-              (progressEvent.loaded / progressEvent.total) * 100
-            );
-            setProgress(percentage);
-          }}
-          onUploadStart={() => {
-            setLoading(true);
-            toast("Uploading started...");
-          }}
-          className="hidden"
-        />
-      </IKContext>
+            <div className="h-[130px] w-full ">
+              <div className=" h-[250px] w-[250px] absolute -right-10  -bottom-10 border aspect-square  rounded-full bg-gradient-to-br  from-white to-primary shadow-lg"></div>
+            </div>
+          </div>
+        </Card>
+        <form
+          onSubmit={handleSubmit(submitForm)}
+          className="col-span-6 h-full px-4 py-10 space-y-8"
+        >
+          <div className="flex items-center justify-between gap-5">
+            <Controller
+              name="firstName"
+              control={control}
+              rules={{ required: "First name is required" }}
+              render={({ field }) => (
+                <div className="space-y-1 w-full">
+                  <Label className={"text-sm text-gray-400"}>First Name</Label>
+                  <Input
+                    {...field}
+                    className={cn(
+                      "w-full text-black  px-0 border-0 border-b-4 border-primary rounded-none",
+                      "focus:outline-none focus:ring-0 focus:ring-transparent focus-visible:ring-0 focus-visible:ring-transparent",
+                      "focus:border-primary transition-colors duration-200",
+                      errors.firstName && "border-b-red-500 "
+                    )}
+                  />
+                  {errors.firstName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.firstName.message}
+                    </p>
+                  )}
+                </div>
+              )}
+            />
+            <Controller
+              name="lastName"
+              control={control}
+              rules={{ required: "Last name is required" }}
+              render={({ field }) => (
+                <div className="space-y-1 w-full">
+                  <Label className={"text-sm text-gray-400"}>First Name</Label>
+                  <Input
+                    {...field}
+                    className={cn(
+                      "w-full text-black px-0  border-0 border-b-4 border-primary rounded-none",
+                      "focus:outline-none focus:ring-0 focus:ring-transparent focus-visible:ring-0 focus-visible:ring-transparent",
+                      "focus:border-primary transition-colors duration-200",
+                      errors.lastName && "border-b-red-500 "
+                    )}
+                  />
+                  {errors.lastName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {errors.lastName.message}
+                    </p>
+                  )}
+                </div>
+              )}
+            />
+          </div>
+          <Controller
+            name="subject"
+            control={control}
+            rules={{ required: "Subject is required" }}
+            render={({ field }) => (
+              <div className="space-y-1 w-full">
+                <Label className={"text-sm text-gray-400"}>Subject</Label>
+                <Input
+                  {...field}
+                  className={cn(
+                    "w-full text-black px-0  border-0 border-b-4 border-primary rounded-none",
+                    "focus:outline-none focus:ring-0 focus:ring-transparent focus-visible:ring-0 focus-visible:ring-transparent",
+                    "focus:border-primary transition-colors duration-200",
+                    errors.subject && "border-b-red-500 "
+                  )}
+                />
+                {errors.subject && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.subject.message}
+                  </p>
+                )}
+              </div>
+            )}
+          />
+          <Controller
+            name="message"
+            control={control}
+            rules={{ required: "Message is required" }}
+            render={({ field }) => (
+              <div className="space-y-1 w-full">
+                <Label className={"text-sm text-gray-400"}>Message</Label>
+                <Textarea
+                  {...field}
+                  className={cn(
+                    "w-full text-black border-0 px-0 border-b-4 border-primary rounded-none",
+                    "focus:outline-none focus:ring-0 focus:ring-transparent focus-visible:ring-0 focus-visible:ring-transparent",
+                    "focus:border-primary transition-colors duration-200",
+                    errors.message && "border-b-red-500"
+                  )}
+                />
 
-      <Button
-        className={"w-fit"}
-        onClick={() => uploadRef.current.upload()}
-        disabled={!videoFile}
-      >
-        Upload
-      </Button> */}
+                {errors.message && (
+                  <p className="text-red-500 text-sm mt-1">
+                    {errors.message.message}
+                  </p>
+                )}
+              </div>
+            )}
+          />
 
-      {/* {progress > 0 && <Progress value={progress} />}
-      {videoUrl && (
-        <video
-          src={videoUrl}
-          controls
-          className="w-full rounded-lg mt-4 border"
-        />
-      )}  */}
-
-      <p>Contact me!!</p>
+          <Button type="submit" className={"rounded-none font-bold"}>
+            Send Message
+          </Button>
+        </form>
+      </Card>
     </div>
   );
 };

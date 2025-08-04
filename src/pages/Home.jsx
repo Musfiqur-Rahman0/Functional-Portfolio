@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 import ProjectCard from "./projects/ProjectsCard";
 import ProjectCardSkeleton from "./projects/ProjectCardSkeleton ";
 import Technologies from "@/components/technologies/Technologies";
+import Contact from "./Contact";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -58,13 +59,7 @@ const Home = () => {
             </Button>
           </div>
         </section>
-        <section id="expriences">
-          <h2 className="text-2xl font-bold text-primary text-center">
-            WORK EXPRIENCES
-          </h2>
-          {/* <Expriences /> */}
-          {/* <ExpriencesCard /> */}
-        </section>
+
         <section id="tech" className="mt-40 space-y-24">
           <motion.div
             variants={blurVariant}
@@ -87,6 +82,7 @@ const Home = () => {
           </motion.div>
           <div className="max-w-[70%] mx-auto"></div>
         </section>
+        <Contact />
       </div>
     </div>
   );
