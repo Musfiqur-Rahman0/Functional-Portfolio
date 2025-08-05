@@ -28,10 +28,10 @@ const Layout = () => {
             className="fixed w-screen h-1 bg-red-600 rounded-full z-50 top-0 "
           ></motion.div>
         )}
-        <div className="max-w-7xl mx-auto min-h-[calc(100vh-376px)] pt-24 flex items-center justify-center">
-          <Outlet />
-        </div>
       </AnimatePresence>
+      <div className="max-w-7xl mx-auto min-h-[calc(100vh-376px)] pt-24 flex items-center justify-center">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );

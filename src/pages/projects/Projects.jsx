@@ -24,7 +24,7 @@ const Projects = () => {
           Unknown but Mine
         </h2>
         <p className="text-gray-400 text-sm md:text-base mb-8">
-          Some projects are small, but they carry a world.
+          Some projects are small, but they carry a world to me.
         </p>
       </div>
       <div className="grid  gap-3 w-full">

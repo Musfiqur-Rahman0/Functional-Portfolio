@@ -20,6 +20,8 @@ import Skills from "@/pages/skills/Skills";
 import ThreeDotsWave from "@/pages/ThreeDotsWave";
 import React from "react";
 import { createBrowserRouter } from "react-router";
+import PrivetRoute from "./PrivetRoute";
+import Forbidden from "@/pages/forbidden/Forbidden";
 
 const router = createBrowserRouter([
   {
@@ -53,6 +55,10 @@ const router = createBrowserRouter([
         element: <DetailsPage />,
       },
       {
+        path: "/forbidden",
+        element: <Forbidden />,
+      },
+      {
         path: "contact",
         element: (
           // <PrivetRoute>
@@ -64,7 +70,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <PrivetRoute allowedRoles={["admin"]}>
+        <DashboardLayout />
+      </PrivetRoute>
+    ),
     children: [
       {
         path: "projects",

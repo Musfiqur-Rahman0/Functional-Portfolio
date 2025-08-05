@@ -24,9 +24,27 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Link, useNavigate } from "react-router";
+import useUserRole from "@/hooks/useUserRole";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import useAuth from "@/hooks/useAuth";
+import { AnimatePresence, motion } from "motion/react";
+import { Skeleton } from "../ui/skeleton";
+import { use, useState } from "react";
+import { AuthContext } from "@/Context/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/dropdown-menu";
 
 const Navbar = () => {
-  const isAdmin = true;
+  const { role, roleLoading } = useUserRole();
+  const { isLoading } = use(AuthContext);
+  const { user } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const isAdmin = role === "admin";
   const navigate = useNavigate();
 
   const pages = [
@@ -40,7 +58,6 @@ const Navbar = () => {
       name: "Dashboard",
       path: "/dashboard",
     },
-
     {
       id: "002",
       name: "About",
@@ -61,7 +78,7 @@ const Navbar = () => {
       name: "Contact",
       path: "/contact",
     },
-  ];
+  ].filter(Boolean);
 
   const navLinks = (
     <>
@@ -75,10 +92,28 @@ const Navbar = () => {
     </>
   );
 
+  const userAvatar = (
+    <Avatar className="cursor-pointer size-14 hover:ring-2 ring-primary/50 ">
+      <AvatarImage
+        src={user?.photoURL}
+        alt={user?.name}
+        className="h-10 w-10 rounded-full object-cover"
+      />
+      <AvatarFallback className={"text-black"}>
+        {user?.displayName ? user?.displayName?.charAt(0) : "U"}
+      </AvatarFallback>
+    </Avatar>
+  );
+
+  const toggleDropdown = () => setIsOpen(!isOpen);
+  const handleLogout = () => {
+    console.log("loged out");
+  };
+
   return (
     <section className="py-4 ">
-      <div className="container mx-auto">
-        <nav className="flex items-center justify-between">
+      <div className="container mx-auto ">
+        <nav className=" flex items-center justify-between">
           <a
             // href="https://www.shadcnblocks.com"
             className="flex items-center gap-2"
@@ -95,21 +130,89 @@ const Navbar = () => {
           <NavigationMenu className="hidden lg:block">
             <NavigationMenuList>{navLinks}</NavigationMenuList>
           </NavigationMenu>
+          {/* <div className="hidden items-center gap-4 lg:flex">
+            {user && user.email ? (
+              userAvatar
+            ) : (
+              <Button
+                variant="ghost"
+                onClick={() => navigate("/login")}
+                className={
+                  "hover:bg-inherit hover:text-inherit hover:border-none cursor-pointer"
+                }
+              >
+                Sign in
+              </Button>
+            )}
+          </div> */}
+
           <div className="hidden items-center gap-4 lg:flex">
-            <Button
-              variant="ghost"
-              onClick={() => navigate("/login")}
-              className={
-                "hover:bg-inherit hover:text-inherit hover:border-none cursor-pointer"
-              }
-            >
-              Sign in
-            </Button>
+            {isLoading ? (
+              <Skeleton className="h-10 w-10 rounded-full animate-pulse" />
+            ) : !user ? (
+              <Link to="/login">
+                <Button variant="ghost" className={"hover:bg-none"}>
+                  Login
+                </Button>
+              </Link>
+            ) : (
+              <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
+                <DropdownMenuTrigger asChild>
+                  <button onClick={toggleDropdown} className="outline-none">
+                    <Avatar className="cursor-pointer size-14 hover:ring-2 ring-primary/50 ">
+                      <AvatarImage
+                        src={user?.photoURL}
+                        alt={user?.name}
+                        className="h-10 w-10 rounded-full object-cover"
+                      />
+                      <AvatarFallback className={"text-black"}>
+                        {user?.displayName ? user?.displayName?.charAt(0) : "U"}
+                      </AvatarFallback>
+                    </Avatar>
+                  </button>
+                </DropdownMenuTrigger>
+
+                <AnimatePresence>
+                  {isOpen && (
+                    <DropdownMenuContent asChild sideOffset={8}>
+                      <motion.div
+                        initial={{ opacity: 0, y: -8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.2 }}
+                        className="bg-white shadow-lg rounded-md w-48 py-2 z-50"
+                      >
+                        <div className="capitalize px-3 py-2 border-b text-sm text-gray-700">
+                          {user.displayName || user.email}
+                        </div>
+                        {isAdmin && (
+                          <DropdownMenuItem asChild>
+                            <Link
+                              to="/dashboard"
+                              className="px-3 py-2 w-full hover:bg-gray-100 text-sm cursor-pointer"
+                            >
+                              Dashboard
+                            </Link>
+                          </DropdownMenuItem>
+                        )}
+                        <DropdownMenuItem
+                          onClick={handleLogout}
+                          className="px-3 py-2 hover:bg-gray-100 text-sm cursor-pointer"
+                        >
+                          Logout
+                        </DropdownMenuItem>
+                      </motion.div>
+                    </DropdownMenuContent>
+                  )}
+                </AnimatePresence>
+              </DropdownMenu>
+            )}
           </div>
+
           <Sheet>
             <SheetTrigger asChild className="lg:hidden">
               <Button variant="outline" size="icon">
-                <MenuIcon className="h-4 w-4" />
+                <MenuIcon className="h-4 w-4 font-bold text-black" />
               </Button>
             </SheetTrigger>
             <SheetContent side="top" className="max-h-screen overflow-auto">
@@ -138,9 +241,15 @@ const Navbar = () => {
                 ))}
               </div>
 
-              <Button className={"mt-6"} variant="outline">
-                Sign in
-              </Button>
+              {user && user?.email ? (
+                <Button className={"mt-6"} variant="outline">
+                  Log Out
+                </Button>
+              ) : (
+                <Button className={"mt-6"} variant="outline">
+                  Sign in
+                </Button>
+              )}
             </SheetContent>
           </Sheet>
         </nav>

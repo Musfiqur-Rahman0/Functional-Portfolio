@@ -2,7 +2,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "./useAxiosSecure";
 import Swal from "sweetalert2";
 
-const useCurd = (endpoint) => {
+const useCurd = (endpoint, { readEnabled = true } = {}) => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
@@ -15,7 +15,7 @@ const useCurd = (endpoint) => {
       const res = await axiosSecure.get(endpoint);
       return res.data;
     },
-    enabled: !!role,
+    enabled: !!role && readEnabled,
   });
 
   const create = useMutation({

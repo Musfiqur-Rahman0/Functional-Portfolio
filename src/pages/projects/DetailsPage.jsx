@@ -1,9 +1,12 @@
 import { Button } from "@/components/ui/button";
 import useCurd from "@/hooks/useCurd";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { MdOutlineArrowOutward } from "react-icons/md";
 import { useParams } from "react-router";
 import DetailsSkeleton from "./DetailsSkeleton";
+
+import CommentInput from "@/components/comments/CommentInput";
+import CommentCard from "@/components/comments/commentCard";
 
 const DetailsPage = () => {
   const { projectId } = useParams();
@@ -20,7 +23,6 @@ const DetailsPage = () => {
     }
   }, [response, isPending]);
 
-  console.log(loading);
   return loading ? (
     <DetailsSkeleton />
   ) : (
@@ -129,6 +131,22 @@ const DetailsPage = () => {
               />
             ))}
           </div>
+        </div>
+
+        <div className="space-y-5">
+          <div className="flex items-center gap-3">
+            <h3 className="text-xl font-semibold">Total Comments : </h3>{" "}
+            <span className="font-bold text-xl">
+              {project?.comments?.length}
+            </span>
+          </div>
+
+          <CommentInput id={projectId} />
+        </div>
+        <div className="space-y-5">
+          {project?.comments?.map((comment) => (
+            <CommentCard commentData={comment} />
+          ))}
         </div>
       </div>
     </div>

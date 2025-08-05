@@ -8,6 +8,7 @@ import useAuth from "@/hooks/useAuth";
 import { AuthForm } from "../authForm/AuthForm";
 import { Card } from "@/components/ui/card";
 import Swal from "sweetalert2";
+import { toast } from "sonner";
 
 const Signup = () => {
   const { signUp, loginWithGoogle } = useAuth();
@@ -33,7 +34,7 @@ const Signup = () => {
       const result = await signUp(email, password, name, photoURL);
       if (result.success) {
         navigate("/login");
-        Swal.fire("Sucess", "Registation Successfull", "success");
+        toast.success("Registration successfull.");
       }
 
       const newUser = {
