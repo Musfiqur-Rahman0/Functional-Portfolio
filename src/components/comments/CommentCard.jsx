@@ -10,15 +10,34 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { MoreVertical } from "lucide-react"; // three-dot icon
+import { QueryClient, useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import { toast } from "sonner";
 
-const CommentCard = ({ commentData }) => {
+const CommentCard = ({ commentData, projectId }) => {
   const { user } = useAuth();
-
+  const axiosSecure = useAxiosSecure();
   const isCommentOwner = commentData?.user_email === user?.email;
+  const queryClient = new QueryClient();
 
-  console.log(isCommentOwner);
-  console.log(commentData);
-  const comment_on = getTime(commentData?.posted_on);
+  const { mutateAsync: deleteComment } = useMutation({
+    mutationFn: async ({ projectId, commentId }) => {
+      const res = await axiosSecure.patch(
+        `/project/${projectId}/comments/${commentId}`,
+        { user_email: commentData.user_email }
+      );
+      return res.data;
+    },
+    onSuccess: () => {
+      toast.success("deleted!!!");
+      queryClient.invalidateQueries(["projects", projectId]);
+    },
+  });
+  const handleCommentDelete = async (projectId, commentId) => {
+    console.log(projectId, commentId);
+    const res = await deleteComment({ projectId, commentId });
+    console.log(res);
+  };
 
   return (
     <div className="flex items-center justify-between">
@@ -39,7 +58,9 @@ const CommentCard = ({ commentData }) => {
         <div className="space-y-2">
           <div className="flex items-center gap-3 text-sm text-gray-300">
             <h4>{commentData.user_name}</h4>
-            <p>{comment_on}</p>
+            <p>
+              {commentData?.posted_on ? getTime(commentData?.posted_on) : ""}
+            </p>
           </div>
           <p className="text-xl font-semibold text-gray-200">
             {commentData.comment}
@@ -55,10 +76,7 @@ const CommentCard = ({ commentData }) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-32">
             <DropdownMenuItem
-              onClick={() => {
-                // you'll handle the delete later
-                console.log("Delete clicked");
-              }}
+              onClick={() => handleCommentDelete(projectId, commentData._id)}
               className="text-red-600 cursor-pointer"
             >
               Delete

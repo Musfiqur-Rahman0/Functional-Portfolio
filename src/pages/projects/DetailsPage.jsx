@@ -145,7 +145,7 @@ const DetailsPage = () => {
         </div>
         <div className="space-y-5">
           {project?.comments?.map((comment) => (
-            <CommentCard commentData={comment} />
+            <CommentCard commentData={comment} projectId={projectId} />
           ))}
         </div>
       </div>
