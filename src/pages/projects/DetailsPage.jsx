@@ -7,14 +7,71 @@ import DetailsSkeleton from "./DetailsSkeleton";
 
 import CommentInput from "@/components/comments/CommentInput";
 import CommentCard from "@/components/comments/commentCard";
+import { AuthContext } from "@/Context/AuthContext";
+import { QueryClient, useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "@/hooks/useAxiosSecure";
+import { toast } from "sonner";
 
 const DetailsPage = () => {
   const { projectId } = useParams();
-
+  const { user, isLoading } = use(AuthContext);
   const [project, setProject] = useState({});
   const [loading, setLoading] = useState(true);
   const { read } = useCurd(`/project/${projectId}`);
   const { data: response, isPending, isError } = read;
+  const [comment, setComment] = useState("");
+  const axiosSecure = useAxiosSecure();
+  const queryClient = new QueryClient();
+
+  const { updateWithPatch } = useCurd(`/project/comment`, {
+    readEnabled: false,
+  });
+
+  const handleCommentPost = () => {
+    if (!projectId || !comment) return;
+
+    const commentsData = {
+      user_name: user?.displayName,
+      user_email: user?.email,
+      photoURL: user?.photoURL,
+      posted_on: new Date().toISOString(),
+      comment,
+    };
+
+    try {
+      const res = updateWithPatch.mutate({
+        id: projectId,
+        updatedItems: commentsData,
+      });
+
+      setComment("");
+    } catch (error) {
+      console.error("Failed to post comment:", error);
+    }
+  };
+
+  const handleCommentChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const { mutateAsync: deleteComment } = useMutation({
+    mutationFn: async ({ projectId, commentId }) => {
+      const res = await axiosSecure.patch(
+        `/project/${projectId}/comments/${commentId}`
+      );
+      return res.data;
+    },
+    onSuccess: () => {
+      toast.success("deleted!!!");
+      // TODO I HAVE TO MAKE THIS REFECTCH WORK PERFECTLY.
+      queryClient.invalidateQueries(["project", projectId]);
+    },
+  });
+  const handleCommentDelete = async (projectId, commentId) => {
+    console.log(projectId, commentId);
+    const res = await deleteComment({ projectId, commentId });
+    console.log(res);
+  };
 
   useEffect(() => {
     if (response) {
@@ -141,11 +198,19 @@ const DetailsPage = () => {
             </span>
           </div>
 
-          <CommentInput id={projectId} />
+          <CommentInput
+            handleCommentPost={handleCommentPost}
+            handleCommentChange={handleCommentChange}
+            comment={comment}
+          />
         </div>
         <div className="space-y-5">
           {project?.comments?.map((comment) => (
-            <CommentCard commentData={comment} projectId={projectId} />
+            <CommentCard
+              commentData={comment}
+              handleCommentDelete={handleCommentDelete}
+              projectId={projectId}
+            />
           ))}
         </div>
       </div>

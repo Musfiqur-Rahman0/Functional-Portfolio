@@ -31,9 +31,14 @@ const Home = () => {
       <div className=" mx-auto px-4 py-2  space-y-24">
         <HeroSection />
         <section id="projects" className="space-y-20">
-          <h2 className="text-2xl md:text-3xl xl:text-5xl font-bold text-primary text-center">
-            PROJECTS
-          </h2>
+          <div className="text-center space-y-2">
+            <h2 className="text-2xl md:text-3xl xl:text-5xl font-bold text-primary text-center">
+              PROJECTS
+            </h2>
+            <p className="text-gray-400">
+              Crafted with passion, built for performance{" "}
+            </p>
+          </div>
 
           {projectsLoading ? (
             <>

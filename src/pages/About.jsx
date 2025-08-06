@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Lottie from "lottie-react";
 import React from "react";
 import about from "../assets/aboutAni.json";
+import Reviews from "@/components/about/Reviews";
 
 const About = () => {
   return (
@@ -42,11 +43,7 @@ const About = () => {
         {/* <BackgroundCirlcle /> */}
       </div>
 
-      <div>
-        <h2 className="text-5xl text-white font-bold text-center mt-10 dark:text-primary">
-          Reviews
-        </h2>
-      </div>
+      <Reviews />
     </div>
   );
 };

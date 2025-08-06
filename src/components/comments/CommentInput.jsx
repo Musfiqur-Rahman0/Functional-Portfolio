@@ -7,38 +7,15 @@ import { motion } from "motion/react";
 import { Button } from "../ui/button";
 import useCurd from "@/hooks/useCurd";
 
-const CommentInput = ({ id }) => {
+const CommentInput = ({ handleCommentPost, handleCommentChange, comment }) => {
   const { isLoading, user } = use(AuthContext);
   const [isInputFocused, setIsInputFocused] = useState(false);
-  const [comment, setComment] = useState("");
+
   const inputRef = useRef(null);
 
   const { updateWithPatch } = useCurd(`/project/comment`, {
     readEnabled: false,
   });
-
-  const handleCommentPost = () => {
-    if (!id || !comment) return;
-
-    const commentsData = {
-      user_name: user?.displayName,
-      user_email: user?.email,
-      photoURL: user?.photoURL,
-      posted_on: new Date().toISOString(),
-      comment,
-    };
-
-    try {
-      const res = updateWithPatch.mutate({
-        id,
-        updatedItems: commentsData,
-      });
-
-      setComment("");
-    } catch (error) {
-      console.error("Failed to post comment:", error);
-    }
-  };
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -74,7 +51,7 @@ const CommentInput = ({ id }) => {
         <motion.input
           onFocus={() => setIsInputFocused(true)}
           value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          onChange={handleCommentChange}
           className={
             "border-none w-full outline-none focus:outline-none  py-2 text-xl font-semibold "
           }

@@ -10,34 +10,10 @@ import {
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { MoreVertical } from "lucide-react"; // three-dot icon
-import { QueryClient, useMutation } from "@tanstack/react-query";
-import useAxiosSecure from "@/hooks/useAxiosSecure";
-import { toast } from "sonner";
 
-const CommentCard = ({ commentData, projectId }) => {
+const CommentCard = ({ commentData, handleCommentDelete, projectId }) => {
   const { user } = useAuth();
-  const axiosSecure = useAxiosSecure();
   const isCommentOwner = commentData?.user_email === user?.email;
-  const queryClient = new QueryClient();
-
-  const { mutateAsync: deleteComment } = useMutation({
-    mutationFn: async ({ projectId, commentId }) => {
-      const res = await axiosSecure.patch(
-        `/project/${projectId}/comments/${commentId}`,
-        { user_email: commentData.user_email }
-      );
-      return res.data;
-    },
-    onSuccess: () => {
-      toast.success("deleted!!!");
-      queryClient.invalidateQueries(["projects", projectId]);
-    },
-  });
-  const handleCommentDelete = async (projectId, commentId) => {
-    console.log(projectId, commentId);
-    const res = await deleteComment({ projectId, commentId });
-    console.log(res);
-  };
 
   return (
     <div className="flex items-center justify-between">
@@ -76,7 +52,11 @@ const CommentCard = ({ commentData, projectId }) => {
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end" className="w-32">
             <DropdownMenuItem
-              onClick={() => handleCommentDelete(projectId, commentData._id)}
+              onClick={() =>
+                !projectId
+                  ? handleCommentDelete(commentData._id)
+                  : handleCommentDelete(projectId, commentData._id)
+              }
               className="text-red-600 cursor-pointer"
             >
               Delete
