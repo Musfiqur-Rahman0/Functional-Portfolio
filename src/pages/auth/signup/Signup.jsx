@@ -50,8 +50,8 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
-      <Card className="flex flex-col items-center justify-center min-h-1/2 w-1/2 px-4 py-3">
+    <div className="w-full h-screen flex items-center justify-center px-3 lg:px-0">
+      <Card className="flex flex-col items-center justify-center min-h-1/2 w-full lg:w-1/2 px-4 py-3">
         <h2 className="text-center mb-7 text-2xl font-bold">
           MusfiqurRahman's Hub
         </h2>

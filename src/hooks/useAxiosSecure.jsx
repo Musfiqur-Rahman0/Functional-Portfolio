@@ -11,34 +11,34 @@ const useAxiosSecure = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
-  //   axiosSecure.interceptors.request.use(
-  //     async (config) => {
-  //       if (user) {
-  //         const token = await user.getIdToken();
-  //         config.headers.Authorization = `Bearer ${token}`;
-  //       }
-  //       return config;
-  //     },
-  //     (error) => {
-  //       return Promise.reject(error);
-  //     }
-  //   );
+  axiosSecure.interceptors.request.use(
+    async (config) => {
+      if (user) {
+        const token = await user.getIdToken();
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    (error) => {
+      return Promise.reject(error);
+    }
+  );
 
-  //   axiosSecure.interceptors.response.use(
-  //     (res) => {
-  //       return res;
-  //     },
-  //     (error) => {
-  //       const { status } = error.response || {};
-  //       if (status === 403) {
-  //         navigate("/forbidden");
-  //       } else if (status === 401) {
-  //         logout();
-  //         navigate("/login");
-  //       }
-  //       return Promise.reject(error);
-  //     }
-  //   );
+  axiosSecure.interceptors.response.use(
+    (res) => {
+      return res;
+    },
+    (error) => {
+      const { status } = error.response || {};
+      if (status === 403) {
+        navigate("/forbidden");
+      } else if (status === 401) {
+        logout();
+        navigate("/login");
+      }
+      return Promise.reject(error);
+    }
+  );
 
   return axiosSecure;
 };

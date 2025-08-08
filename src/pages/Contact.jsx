@@ -67,19 +67,19 @@ const Contact = () => {
     }
   }, [user]);
   return (
-    <div className="w-full  mx-auto px-4 space-y-10">
+    <div className="px-2 md:px-0 w-full   mx-auto lg:px-4 space-y-5 lg:space-y-10">
       <div className="text-center">
-        <h2 className="text-3xl md:text-4xl font-bold   mb-1">
+        <h2 className="text-2xl lg:text-3xl md:text-4xl font-bold   mb-1">
           Got Something in Mind
         </h2>
         <p className="text-gray-400 text-sm md:text-base mb-8">
           Let’s make it real together.
         </p>
       </div>
-      <Card className="grid grid-cols-10 items-center gap-5 p-3">
+      <Card className="grid grid-cols-1 lg:grid-cols-10 items-center gap-5 p-3">
         <Card
           className={
-            "relative h-full bg-primary col-span-4  px-5 py-10 text-white overflow-hidden"
+            "relative h-full bg-primary lg:col-span-4  px-5 py-10 text-white overflow-hidden"
           }
         >
           <div className="space-y-5 ">
@@ -111,18 +111,18 @@ const Contact = () => {
               <FaMapMarkerAlt className="mt-1" />
               <div>
                 <p className="text-sm">Location</p>
-                <p className="text-md font-semibold">Dhaka, Bangladesh</p>
+                <p className="text-md font-semibold">Rangpur, Bangladesh</p>
               </div>
             </div>
 
-            <div className="h-[130px] w-full ">
+            <div className="h-[150px] lg:h-[130px] w-full ">
               <div className=" h-[250px] w-[250px] absolute -right-10  -bottom-10 border aspect-square  rounded-full bg-gradient-to-br  from-white to-primary shadow-lg"></div>
             </div>
           </div>
         </Card>
         <form
           onSubmit={handleSubmit(submitForm)}
-          className="col-span-6 h-full px-4 py-10 space-y-8"
+          className="lg:col-span-6 h-full px-4 py-10 space-y-8"
         >
           <div className="flex items-center justify-between gap-5">
             <Controller

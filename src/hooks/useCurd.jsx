@@ -57,7 +57,6 @@ const useCurd = (endpoint, { readEnabled = true } = {}) => {
       return res.data;
     },
     onSuccess: () => {
-      Swal.fire("Deleted ", "Data Deleted successfully!", "success");
       queryClient.invalidateQueries([endpoint]);
     },
   });

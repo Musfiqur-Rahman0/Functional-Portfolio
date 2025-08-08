@@ -18,7 +18,7 @@ const Projects = () => {
   } = usePaginate("/projects", currentPage, limit);
 
   return (
-    <div className="space-y-5 ">
+    <div className="space-y-5 pt-12 md:pt-0 px-3 md:px-0 ">
       <div className="">
         <h2 className="text-3xl md:text-4xl font-bold   mb-1 border-l-8 px-4 border-primary">
           Unknown but Mine

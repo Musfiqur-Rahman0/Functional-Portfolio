@@ -28,9 +28,9 @@ const Home = () => {
   console.log(projectsLoading);
   return (
     <div>
-      <div className=" mx-auto px-4 py-2  space-y-24">
+      <div className=" mx-auto px-2 lg:px-4 py-2  space-y-24">
         <HeroSection />
-        <section id="projects" className="space-y-20">
+        <section id="projects" className="space-y-10 lg:space-y-20">
           <div className="text-center space-y-2">
             <h2 className="text-2xl md:text-3xl xl:text-5xl font-bold text-primary text-center">
               PROJECTS

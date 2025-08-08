@@ -6,16 +6,14 @@ import { Input } from "@/components/ui/input";
 import { motion } from "motion/react";
 import { Button } from "../ui/button";
 import useCurd from "@/hooks/useCurd";
+import { useNavigate } from "react-router";
+import { toast } from "sonner";
 
 const CommentInput = ({ handleCommentPost, handleCommentChange, comment }) => {
   const { isLoading, user } = use(AuthContext);
   const [isInputFocused, setIsInputFocused] = useState(false);
-
+  const navigate = useNavigate();
   const inputRef = useRef(null);
-
-  const { updateWithPatch } = useCurd(`/project/comment`, {
-    readEnabled: false,
-  });
 
   useEffect(() => {
     const handleOutsideClick = (e) => {
@@ -35,7 +33,7 @@ const CommentInput = ({ handleCommentPost, handleCommentChange, comment }) => {
       {isLoading || !user || !user.photoURL ? (
         <Skeleton className="h-10 w-10 rounded-full animate-pulse" />
       ) : (
-        <Avatar className={"size-16 bg-primary"}>
+        <Avatar className={"size-12 lg:size-16 bg-primary"}>
           <AvatarImage
             src={user?.photoURL}
             alt={user?.displayName}
@@ -68,7 +66,17 @@ const CommentInput = ({ handleCommentPost, handleCommentChange, comment }) => {
             <Button className={""} variant={"ghost hover:bg-none"}>
               Cencel
             </Button>
-            <Button disabled={!comment} onClick={handleCommentPost}>
+            <Button
+              disabled={!comment}
+              onClick={() => {
+                if (!user) {
+                  navigate("/login");
+                  toast.info("Please login to post a comment");
+                } else {
+                  handleCommentPost();
+                }
+              }}
+            >
               Comment
             </Button>
           </div>

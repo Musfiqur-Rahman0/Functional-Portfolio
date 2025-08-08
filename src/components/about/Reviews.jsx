@@ -53,7 +53,7 @@ const Reviews = () => {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-12">
       <div>
         <h2 className="text-5xl text-white font-bold  mt-10 dark:text-primary border-l-6 border-primary pl-4">
           Reviews
@@ -71,6 +71,7 @@ const Reviews = () => {
       <div className="space-y-5">
         {reviews?.map((review) => (
           <CommentCard
+            key={review?._id}
             commentData={review}
             handleCommentDelete={handleReviewDelete}
           />

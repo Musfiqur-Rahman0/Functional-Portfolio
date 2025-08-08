@@ -29,7 +29,7 @@ const Layout = () => {
           ></motion.div>
         )}
       </AnimatePresence>
-      <div className="max-w-7xl mx-auto min-h-[calc(100vh-376px)] pt-24 flex items-center justify-center">
+      <div className="max-w-7xl mx-auto min-h-[calc(100vh-376px)] lg:pt-24 flex items-center justify-center">
         <Outlet />
       </div>
       <Footer />

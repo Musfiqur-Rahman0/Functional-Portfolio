@@ -207,6 +207,7 @@ const DetailsPage = () => {
         <div className="space-y-5">
           {project?.comments?.map((comment) => (
             <CommentCard
+              key={comment._id}
               commentData={comment}
               handleCommentDelete={handleCommentDelete}
               projectId={projectId}

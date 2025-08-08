@@ -37,11 +37,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { role, roleLoading } = useUserRole();
   const { isLoading } = use(AuthContext);
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+
   const [isOpen, setIsOpen] = useState(false);
 
   const isAdmin = role === "admin";
@@ -106,8 +109,30 @@ const Navbar = () => {
   );
 
   const toggleDropdown = () => setIsOpen(!isOpen);
-  const handleLogout = () => {
-    console.log("loged out");
+  const handleLogout = async () => {
+    try {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You will be logged out from your account.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, logout!",
+        cancelButtonText: "Cancel",
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          const res = await logout();
+          if (res.success) {
+            toast.success("Sucessfully loged Out");
+            navigate("/login");
+          }
+        }
+      });
+    } catch (error) {
+      toast.error("Failed to logout ", error);
+      console.log(error);
+    }
   };
 
   return (
@@ -123,9 +148,9 @@ const Navbar = () => {
               className="max-h-8"
               alt="Shadcn UI Navbar"
             />
-            <span className="text-lg font-semibold tracking-tighter">
+            <Link to={"/"} className="text-lg font-semibold tracking-tighter">
               MusfiqurRahman.Hub
-            </span>
+            </Link>
           </a>
           <NavigationMenu className="hidden lg:block">
             <NavigationMenuList>{navLinks}</NavigationMenuList>

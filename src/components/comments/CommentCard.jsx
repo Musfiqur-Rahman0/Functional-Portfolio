@@ -19,7 +19,7 @@ const CommentCard = ({ commentData, handleCommentDelete, projectId }) => {
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-5">
         <Avatar
-          className={"size-14 bg-primary flex items-center justify-center"}
+          className={"size-10 bg-primary flex items-center justify-center"}
         >
           <AvatarImage
             src={commentData?.photoURL}
@@ -31,7 +31,7 @@ const CommentCard = ({ commentData, handleCommentDelete, projectId }) => {
           </AvatarFallback>
         </Avatar>
 
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="flex items-center gap-3 text-sm text-gray-300">
             <h4>{commentData.user_name}</h4>
             <p>
