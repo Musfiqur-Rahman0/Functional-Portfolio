@@ -9,6 +9,7 @@ import { AuthForm } from "../authForm/AuthForm";
 import { Card } from "@/components/ui/card";
 import Swal from "sweetalert2";
 import { toast } from "sonner";
+import bgImg from "../../../assets/Fondo Una Ilustración De Un Paisaje De Montaña Fondo, Imagen Imprimible De Montañas, Acrílico, Alpino Imagen de Fondo Para Descarga Gratuita - Pngtreee.jpeg";
 
 const Signup = () => {
   const { signUp, loginWithGoogle } = useAuth();
@@ -50,8 +51,13 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center px-3 lg:px-0">
-      <Card className="flex flex-col items-center justify-center min-h-1/2 w-full lg:w-1/2 px-4 py-3">
+    <div className="w-full h-screen flex items-center justify-center px-3 lg:px-0 relative">
+      <img
+        className="h-full w-full object-cover  absolute  inset-0"
+        src={bgImg}
+        alt="background image"
+      />
+      <Card className="bg-transparent z-50 flex flex-col items-center justify-center min-h-1/2 w-full lg:w-1/2 px-4 py-3">
         <h2 className="text-center mb-7 text-2xl font-bold">
           MusfiqurRahman's Hub
         </h2>

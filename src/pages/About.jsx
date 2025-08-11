@@ -5,8 +5,6 @@ import React from "react";
 import about from "../assets/aboutAni.json";
 import Reviews from "@/components/about/Reviews";
 
-const AboutMe = () => <></>;
-
 const About = () => {
   return (
     <div className="px-3 lg:px-0 flex flex-col  justify-center pt-12 gap-10">

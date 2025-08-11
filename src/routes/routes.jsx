@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <Layout />,
     hydrateFallbackElement: <ThreeDotsWave />,
-    errorElement: <Error />,
+
     children: [
       {
         index: true,
@@ -70,11 +70,13 @@ const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+
     element: (
       <PrivetRoute allowedRoles={["admin"]}>
         <DashboardLayout />
       </PrivetRoute>
     ),
+    hydrateFallbackElement: <ThreeDotsWave />,
     children: [
       {
         path: "projects",
@@ -108,8 +110,8 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-
     element: <AuthLayout />,
+    hydrateFallbackElement: <ThreeDotsWave />,
     children: [
       {
         path: "/login",
@@ -120,6 +122,10 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
     ],
+  },
+  {
+    path: "*",
+    element: <Error />,
   },
 ]);
 

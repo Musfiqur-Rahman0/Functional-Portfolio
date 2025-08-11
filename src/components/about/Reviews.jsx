@@ -5,6 +5,8 @@ import { AuthContext } from "@/Context/AuthContext";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import CommentCard from "../comments/CommentCard";
 import Loader from "../loader/Loader";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 const Reviews = () => {
   const {} = useCurd();
@@ -14,7 +16,7 @@ const Reviews = () => {
   const { create, read, deleteMutation } = useCurd("/reviews");
 
   const { data: reviews = [], isPending, isError } = read;
-  const { mutate: postReview } = create;
+  const { mutateAsync: postReview } = create;
   const { mutate: deleteReview } = deleteMutation;
 
   const handleReviewChange = (e) => {
@@ -31,7 +33,14 @@ const Reviews = () => {
     };
 
     try {
-      postReview(reviewData);
+      const res = await postReview(reviewData);
+      if (res.insertedId) {
+        Swal.fire(
+          "Review Submitted!!!",
+          "Thanks For your valueable comment",
+          "success"
+        );
+      }
     } catch (error) {
       console.error("Failed to post comment:", error);
     } finally {

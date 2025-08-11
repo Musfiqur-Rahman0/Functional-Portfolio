@@ -6,16 +6,12 @@ const useCurd = (endpoint, { readEnabled = true } = {}) => {
   const axiosSecure = useAxiosSecure();
   const queryClient = useQueryClient();
 
-  // TODO I HAVE TO MAKE THIS ROLE DYNAMIC
-  const role = "admin";
-
   const read = useQuery({
     queryKey: [endpoint],
     queryFn: async () => {
       const res = await axiosSecure.get(endpoint);
       return res.data;
     },
-    enabled: !!role && readEnabled,
   });
 
   const create = useMutation({
@@ -24,7 +20,6 @@ const useCurd = (endpoint, { readEnabled = true } = {}) => {
       return res.data;
     },
     onSuccess: () => {
-      Swal.fire("Data posted!!!", "Data posted successfully!", "success");
       queryClient.invalidateQueries([endpoint]);
     },
   });
@@ -35,7 +30,6 @@ const useCurd = (endpoint, { readEnabled = true } = {}) => {
       return res.data;
     },
     onSuccess: () => {
-      Swal.fire("Updated Succesfully", "Data updated successfully!", "success");
       queryClient.invalidateQueries([endpoint]);
     },
   });
@@ -46,7 +40,6 @@ const useCurd = (endpoint, { readEnabled = true } = {}) => {
       return res.data;
     },
     onSuccess: () => {
-      Swal.fire("Updated Succesfully", "Data updated successfully!", "success");
       queryClient.invalidateQueries([endpoint]);
     },
   });

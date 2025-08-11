@@ -183,7 +183,7 @@ const Contact = () => {
                 <Label className="text-sm text-gray-400">Email</Label>
                 <Input
                   {...field}
-                  readOnly
+                  readOnly={user ? true : false}
                   className={cn(
                     "w-full text-black px-0 border-0 border-b-4 border-primary rounded-none",
                     "focus:outline-none focus:ring-0 focus:ring-transparent focus-visible:ring-0 focus-visible:ring-transparent",

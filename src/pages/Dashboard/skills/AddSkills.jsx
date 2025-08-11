@@ -3,9 +3,11 @@ import axios from "axios";
 import React from "react";
 import { toast } from "sonner";
 import SkillForm from "./SkillForm";
+import { useNavigate } from "react-router";
 
 export default function AddSkills() {
   const axiosSecure = useAxiosSecure();
+  const navigate = useNavigate();
   const onSubmit = async (data) => {
     const file = data.Logo[0];
 
@@ -34,6 +36,7 @@ export default function AddSkills() {
       const response = await axiosSecure.post("/skills", newSkill);
       if (response.status === 201) {
         toast.success("Sucess!!! New Skills Added sucessfully");
+        navigate("/dashboard/skills");
       }
     } catch (error) {
       toast.error("Failed!!! " + error?.response?.data?.message);

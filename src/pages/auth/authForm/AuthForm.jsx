@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,6 +9,7 @@ import useAuth from "@/Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { toast } from "sonner";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 function AuthFormBase({ fields, onSubmit, submitText, linkText, linkHref }) {
   const {
@@ -17,7 +18,7 @@ function AuthFormBase({ fields, onSubmit, submitText, linkText, linkHref }) {
     watch,
     formState: { errors },
   } = useForm();
-
+  const [showPass, setShowPass] = useState(false);
   const { loginWithGoogle } = useAuth();
   const axiosInstance = useAxiosSecure();
   const navigate = useNavigate();
@@ -51,13 +52,27 @@ function AuthFormBase({ fields, onSubmit, submitText, linkText, linkHref }) {
       className="space-y-4 w-full max-w-lg mx-auto"
     >
       {fields.map((field) => (
-        <div key={field.name} className="space-y-1">
+        <div key={field.name} className="space-y-1 relative">
           <Label htmlFor={field.name}>{field.label}</Label>
           <Input
             id={field.name}
-            type={field.type}
+            type={
+              field.type === "password"
+                ? showPass
+                  ? "password"
+                  : "text"
+                : field.type
+            }
             {...register(field.name, { required: true })}
           />
+          {field.name === "password" && (
+            <div className="absolute right-2 top-[45%] cursor-pointer h-1/2 ">
+              <button type="button" onClick={() => setShowPass(!showPass)}>
+                {showPass ? <FaEye size={25} /> : <FaEyeSlash size={25} />}
+              </button>
+            </div>
+          )}
+
           {errors[field.name] && (
             <p className="text-sm text-red-500">{field.label} is required.</p>
           )}

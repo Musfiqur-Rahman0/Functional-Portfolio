@@ -11,6 +11,7 @@ import { AuthContext } from "@/Context/AuthContext";
 import { QueryClient, useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 const DetailsPage = () => {
   const { projectId } = useParams();
@@ -27,7 +28,7 @@ const DetailsPage = () => {
     readEnabled: false,
   });
 
-  const handleCommentPost = () => {
+  const handleCommentPost = async () => {
     if (!projectId || !comment) return;
 
     const commentsData = {
@@ -39,13 +40,20 @@ const DetailsPage = () => {
     };
 
     try {
-      const res = updateWithPatch.mutate({
+      const res = await updateWithPatch.mutateAsync({
         id: projectId,
         updatedItems: commentsData,
       });
-
+      if (res.modifiedCount) {
+        Swal.fire(
+          "Review Posted!",
+          "Thanks for your valueable commet",
+          "success"
+        );
+      }
       setComment("");
     } catch (error) {
+      toast.success("Something wrong! try agin leter");
       console.error("Failed to post comment:", error);
     }
   };
@@ -62,9 +70,10 @@ const DetailsPage = () => {
       return res.data;
     },
     onSuccess: () => {
-      toast.success("deleted!!!");
+      toast.success("Deleted Successfully!!!");
+      read.refetch();
       // TODO I HAVE TO MAKE THIS REFECTCH WORK PERFECTLY.
-      queryClient.invalidateQueries(["project", projectId]);
+      queryClient.invalidateQueries([`/project/${projectId}`]);
     },
   });
   const handleCommentDelete = async (projectId, commentId) => {

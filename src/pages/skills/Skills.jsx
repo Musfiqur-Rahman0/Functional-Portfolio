@@ -8,8 +8,6 @@ const Skills = () => {
   const { read } = useCurd("/skills");
   const { data: skills = [], isPending, isError } = read;
 
-  console.log(skills);
-
   if (isPending) {
     return <Loader />;
   }

@@ -5,6 +5,7 @@ import { data, useNavigate } from "react-router";
 import useAuth from "@/hooks/useAuth";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import bgImg from "../../../assets/Download premium image of Pine forest nature outdoors woodland about mountain iphone wallpaper, iphone wallpaper sky, forest wallpaper, iphone wallpaper, and iphone forest wallpaper 13006126.jpeg";
 
 const Login = () => {
   const { login } = useAuth();
@@ -32,8 +33,14 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center px-3 lg:px-0">
-      <Card className="flex flex-col items-center justify-center min-h-1/2 w-full lg:w-1/2 px-4 py-3">
+    <div className="w-full h-screen flex items-center justify-center px-3 lg:px-0 relative">
+      <img
+        className="h-full w-full object-cover  absolute  inset-0"
+        src={bgImg}
+        alt="background image"
+      />
+
+      <Card className="z-50 flex flex-col items-center justify-center min-h-1/2 w-full lg:w-1/2 px-4 py-3 bg-transparent border-white border-t-2">
         <h2 className="text-center mb-7 text-2xl font-bold">
           MusfiqurRahman's Hub
         </h2>

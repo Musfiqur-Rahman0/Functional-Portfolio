@@ -143,11 +143,12 @@ const Navbar = () => {
             // href="https://www.shadcnblocks.com"
             className="flex items-center gap-2"
           >
-            <img
+            {/* TODO  add a logo here  */}
+            {/* <img
               src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg"
               className="max-h-8"
               alt="Shadcn UI Navbar"
-            />
+            /> */}
             <Link to={"/"} className="text-lg font-semibold tracking-tighter">
               MusfiqurRahman.Hub
             </Link>
