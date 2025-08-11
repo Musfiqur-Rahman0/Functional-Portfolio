@@ -7,6 +7,7 @@ import CommentCard from "../comments/CommentCard";
 import Loader from "../loader/Loader";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
+import CommentCardSkeleton from "../comments/CommentCardSkeleton";
 
 const Reviews = () => {
   const {} = useCurd();
@@ -57,10 +58,6 @@ const Reviews = () => {
     }
   };
 
-  if (isPending) {
-    return <Loader />;
-  }
-
   return (
     <div className="space-y-12">
       <div>
@@ -78,13 +75,15 @@ const Reviews = () => {
       />
 
       <div className="space-y-5">
-        {reviews?.map((review) => (
-          <CommentCard
-            key={review?._id}
-            commentData={review}
-            handleCommentDelete={handleReviewDelete}
-          />
-        ))}
+        {isPending
+          ? [...Array(3)].map((_, idx) => <CommentCardSkeleton key={idx} />)
+          : reviews?.map((review) => (
+              <CommentCard
+                key={review?._id}
+                commentData={review}
+                handleCommentDelete={handleReviewDelete}
+              />
+            ))}
       </div>
     </div>
   );

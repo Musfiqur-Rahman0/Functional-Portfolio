@@ -45,13 +45,13 @@ const router = createBrowserRouter([
       },
       {
         path: "/projects",
-        loader: () => fetch("http://localhost:5000/projects"),
+        // loader: () => fetch("http://localhost:5000/projects"),
         element: <Projects />,
       },
       {
         path: "/project/:projectId",
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/project/${params.projectId}`),
+        // loader: ({ params }) =>
+        //   fetch(`http://localhost:5000/project/${params.projectId}`),
         element: <DetailsPage />,
       },
       {

@@ -8,10 +8,6 @@ const Skills = () => {
   const { read } = useCurd("/skills");
   const { data: skills = [], isPending, isError } = read;
 
-  if (isPending) {
-    return <Loader />;
-  }
-
   return (
     <div className="w-full space-y-5 pt-12 md:pt-0 px-3 md:px-0">
       <div>

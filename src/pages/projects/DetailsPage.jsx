@@ -12,6 +12,8 @@ import { QueryClient, useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "@/hooks/useAxiosSecure";
 import { toast } from "sonner";
 import Swal from "sweetalert2";
+import { Skeleton } from "@/components/ui/skeleton";
+import CommentCardSkeleton from "@/components/comments/CommentCardSkeleton";
 
 const DetailsPage = () => {
   const { projectId } = useParams();
