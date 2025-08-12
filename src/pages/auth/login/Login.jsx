@@ -36,7 +36,8 @@ const Login = () => {
     <div className="w-full h-screen flex items-center justify-center px-3 lg:px-0 relative">
       <img
         className="h-full w-full object-cover  absolute  inset-0"
-        src={bgImg}
+        loading="lazy"
+        src="https://i.ibb.co.com/ZRXyZ5fC/Fondo-Una-Ilustraci-n-De-Un-Paisaje-De-Monta-a-Fondo-Imagen-Imprimible-De-Monta-as-Acr-lico-Alpino-I.jpg"
         alt="background image"
       />
 

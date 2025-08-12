@@ -54,7 +54,8 @@ const Signup = () => {
     <div className="w-full h-screen flex items-center justify-center px-3 lg:px-0 relative">
       <img
         className="h-full w-full object-cover  absolute  inset-0"
-        src={bgImg}
+        loading="lazy"
+        src="https://i.ibb.co.com/hRbb6jRT/Download-premium-image-of-Pine-forest-nature-outdoors-woodland-about-mountain-iphone-wallpaper-iphon.jpg"
         alt="background image"
       />
       <Card className="bg-transparent z-50 flex flex-col items-center justify-center min-h-1/2 w-full lg:w-1/2 px-4 py-3">

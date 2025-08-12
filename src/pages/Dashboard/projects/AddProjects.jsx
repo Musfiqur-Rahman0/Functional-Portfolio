@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm, Controller, FormProvider } from "react-hook-form";
 import { Card } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -10,6 +10,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { AnimatePresence, motion } from "motion/react";
 import { Progress } from "@/components/ui/progress";
 import StepComponent from "./multistep/StepOne";
+import Swal from "sweetalert2";
+import { toast } from "sonner";
+import { uploadImage } from "@/lib/utils";
+import useCurd from "@/hooks/useCurd";
+import { useNavigate } from "react-router";
 
 const formSteps = [
   {
@@ -30,17 +35,9 @@ const formSteps = [
       { name: "github", label: "GitHub Repository", type: "url" },
     ],
   },
+
   {
     step: 3,
-    title: "Video Information",
-    fields: [
-      { name: "videoUrl", label: "Video URL", type: "url" },
-      { name: "videoSize", label: "Video Size (MB)", type: "number" },
-      { name: "videoDuration", label: "Video Duration (sec)", type: "number" },
-    ],
-  },
-  {
-    step: 4,
     title: "Content",
     fields: [
       { name: "technologies", label: "Technologies Used", type: "array" },
@@ -49,7 +46,7 @@ const formSteps = [
     ],
   },
   {
-    step: 5,
+    step: 4,
     title: "Images",
     fields: [
       { name: "projectImage", label: "Main Project Image", type: "file" },
@@ -62,7 +59,7 @@ const formSteps = [
     ],
   },
   {
-    step: 6,
+    step: 5,
     title: "Process",
     fields: [
       { name: "projectGoals", label: "Project Goals", type: "textarea" },
@@ -77,15 +74,61 @@ const formSteps = [
 
 const AddProjects = () => {
   const [step, setStep] = useState(0);
+  const [detailsImages, setDetailImages] = useState([]);
   const methods = useForm();
+  const navigate = useNavigate();
+  const { create } = useCurd("/projects");
+
+  const { mutateAsync: addProject } = create;
 
   const fieldData = formSteps[step];
   const nextStep = () => setStep((s) => Math.min(s + 1, formSteps.length - 1));
   const prevStep = () => setStep((s) => Math.max(s - 1, 0));
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("Project Data:", data);
+
+    const technologies = data.technologies.split(",");
+    const features = data.features.split(",");
+
+    try {
+      const file = data.projectImage[0];
+
+      const projectImageurl = await uploadImage(file);
+
+      data.projectImage = projectImageurl;
+      data.features = features;
+      data.technologies = technologies;
+      data.detailImages = detailsImages;
+      data.addedOn = new Date().toISOString();
+
+      const res = await addProject(data);
+      console.log(res);
+      if (res.insertedId) {
+        toast.success("New Projects Added Successfully!!");
+        methods.reset();
+        navigate("/dashboard/projects");
+      }
+    } catch (error) {
+      toast.error("Failed to add Projects");
+    }
   };
+
+  // TODO I HAVE TO SHOW THE ADDED IMAGES ON THE UI
+  // uploading the image when changing the file.
+
+  const imageFile = methods.watch("detailImages");
+  useEffect(() => {
+    const upload = async () => {
+      if (imageFile?.[0]) {
+        const file = imageFile[0];
+        const photourl = await uploadImage(file);
+        setDetailImages((prev) => [...prev, photourl]);
+      }
+    };
+
+    upload();
+  }, [imageFile]);
 
   return (
     <FormProvider {...methods}>
@@ -129,7 +172,12 @@ const AddProjects = () => {
               Next
             </Button>
           ) : (
-            <Button type="submit">Submit</Button>
+            <button
+              type="submit"
+              className="px-5 py-2 rounded-md bg-primary text-white"
+            >
+              Submit
+            </button>
           )}
         </div>
 

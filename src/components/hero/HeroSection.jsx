@@ -6,18 +6,18 @@ import CircleBackground from "../shared/CircleBackground";
 
 const HeroSection = () => {
   return (
-    <div className="mt-20 flex flex-col lg:grid lg:grid-cols-2 gap-5 lg:gap-20 justify-between relative">
-      <figure className="relative z-10 lg:absolute lg:top-1/2 lg:left-1/2 lg:-translate-y-1/2 lg:-translate-x-1/2 h-full ">
+    <div className="mt-20 flex flex-col md:grid md:grid-cols-2 gap-5 md:gap-20 justify-between relative">
+      <figure className="relative z-10 md:absolute md:top-1/2 md:left-1/2 md:-translate-y-1/2 md:-translate-x-1/2 h-full ">
         <img src={bannerImg} alt="" className="h-full " />
         <CircleBackground className="" />
       </figure>
-      <CircleBackground className="hidden lg:block" />
+      <CircleBackground className="hidden md:block" />
       <div className="">
-        <h2 className="hidden lg:block  lg:text-9xl font-bold lg:text-right">
+        <h2 className="hidden md:block md:text-8xl md:text-right  lg:text-9xl font-bold lg:text-right">
           Musfiqur Rahman
         </h2>
       </div>
-      <div className="z-10 lg:pl-10  rounded-lg    flex items-center justify-end">
+      <div className="z-10 lg:pl-10  rounded-lg  bg-transparent backdrop:blur-3xl    flex items-center justify-end">
         <div className="min-w-[40px]  space-y-5 flex flex-col items-start justify-between">
           <Lottie
             animationData={circle}

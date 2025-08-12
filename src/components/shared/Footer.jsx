@@ -58,7 +58,7 @@ const Footer = ({
 }) => {
   return (
     <section className="pt-20 px-3 lg:px-0 lg:pt-32 ">
-      <div className=" container mx-auto">
+      <div className=" max-w-7xl mx-auto">
         <div className="flex w-full flex-col justify-between gap-10 lg:flex-row lg:items-start lg:text-left">
           <div className="flex w-full flex-col justify-between gap-6 lg:items-start">
             {/* Logo */}

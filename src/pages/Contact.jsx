@@ -76,10 +76,10 @@ const Contact = () => {
           Let’s make it real together.
         </p>
       </div>
-      <Card className="grid grid-cols-1 lg:grid-cols-10 items-center gap-5 p-3">
+      <Card className="grid grid-cols-1 md:grid-cols-10 items-center gap-5 p-3">
         <Card
           className={
-            "relative h-full bg-primary lg:col-span-4  px-5 py-10 text-white overflow-hidden"
+            "relative h-full bg-primary md:col-span-4  px-5 py-10 text-white overflow-hidden"
           }
         >
           <div className="space-y-5 ">
@@ -122,7 +122,7 @@ const Contact = () => {
         </Card>
         <form
           onSubmit={handleSubmit(submitForm)}
-          className="lg:col-span-6 h-full px-4 py-10 space-y-8"
+          className="md:col-span-6 h-full px-4 py-10 space-y-8"
         >
           <div className="flex items-center justify-between gap-5">
             <Controller

@@ -137,7 +137,7 @@ const Navbar = () => {
 
   return (
     <section className="py-4 ">
-      <div className="container mx-auto ">
+      <div className="max-w-7xl mx-auto ">
         <nav className=" flex items-center justify-between">
           <a
             // href="https://www.shadcnblocks.com"
