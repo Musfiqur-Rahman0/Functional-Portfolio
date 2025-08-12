@@ -10,7 +10,7 @@ import cv from "../../assets/MusfiqurRahmanResume.pdf";
 const HeroSection = () => {
   return (
     <div className="mt-20 flex flex-col md:grid md:grid-cols-2 gap-5 md:gap-24 justify-between relative">
-      <figure className="relative z-10 md:absolute md:top-1/2 md:left-[52%] md:-translate-y-1/2 md:-translate-x-[52%] h-full ">
+      <figure className="relative z-10 md:absolute  md:top-1/2 md:left-[52%] md:-translate-y-1/2 md:-translate-x-[52%] h-full ">
         <img src={bannerImg} alt="" className="h-full " />
         <CircleBackground className="" />
       </figure>
@@ -19,21 +19,6 @@ const HeroSection = () => {
         <h2 className="hidden md:block md:text-8xl md:text-right  lg:text-9xl font-bold lg:text-right">
           Musfiqur Rahman
         </h2>
-
-        {/* <motion.a
-          initial={{ y: 0 }}
-          animate={{ y: -10 }}
-          href={cv}
-          download={"MusfiqurRahmanResume.pdf"}
-          transition={{
-            duration: 0.8,
-            repeat: Infinity,
-            repeatType: "reverse",
-          }}
-          className="border border-primary rounded-full aspect-square p-2 cursor-pointer"
-        >
-          <GoDownload size={24} className="text-white" />
-        </motion.a> */}
       </div>
       <div className="z-10 lg:pl-10  rounded-lg  bg-transparent backdrop:blur-3xl    flex items-center justify-end">
         <div className="min-w-[40px]   flex flex-col items-start justify-between">

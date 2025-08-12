@@ -5,15 +5,44 @@ import usePaginate from "@/hooks/usePaginate";
 import SharedTable from "@/pages/shared/SharedTable";
 
 import React, { useEffect, useState } from "react";
+import { toast } from "sonner";
+import Swal from "sweetalert2";
 
 const ManageProjects = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 10;
+
+  const { deleteMutation } = useCurd("/projects");
+  const { mutateAsync: deleteProject, isPending: deletingProjects } =
+    deleteMutation;
   const { data: projects = [], totalPage } = usePaginate(
     "/projects",
     currentPage,
     limit
   );
+
+  const handleDeleteProject = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        console.log("deleted!!");
+        const res = await deleteProject(id);
+        if (res.deletedCount === 1) {
+          toast.success("Project has been deleted!!!");
+        } else {
+          toast.error("Failed!, Please try again.");
+        }
+      }
+    });
+  };
+
   const headItems = ["#", "Name", "Type", "Category", "Actions"];
 
   const bodyItems = projects?.map((project, index) => ({
@@ -34,10 +63,10 @@ const ManageProjects = () => {
         <Button
           variant="destructive"
           size="sm"
-          // onClick={() => handleReject(project)}
-          // disabled={approveMutation.isPending}
+          onClick={() => handleDeleteProject(project._id)}
+          disabled={deletingProjects}
         >
-          Remove
+          {deletingProjects ? "Removing..." : " Remove"}
         </Button>
       </div>,
     ],
