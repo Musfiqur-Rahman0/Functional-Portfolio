@@ -185,7 +185,7 @@ const Navbar = () => {
               <DropdownMenu open={isOpen} onOpenChange={setIsOpen}>
                 <DropdownMenuTrigger asChild>
                   <button onClick={toggleDropdown} className="outline-none">
-                    <Avatar className="cursor-pointer size-14 hover:ring-2 ring-primary/50 ">
+                    <Avatar className="cursor-pointer size-14 flex items-center justify-center hover:ring-2 ring-primary/50 ">
                       <AvatarImage
                         src={user?.photoURL}
                         alt={user?.name}

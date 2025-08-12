@@ -8,6 +8,7 @@ import { useNavigate } from "react-router";
 export default function AddSkills() {
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
+
   const onSubmit = async (data) => {
     const file = data.Logo[0];
 

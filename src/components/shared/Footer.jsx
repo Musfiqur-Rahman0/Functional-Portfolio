@@ -1,5 +1,6 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import favIcon from "../../assets/Untitled design (4).png";
 
 const defaultSections = [
   {
@@ -32,10 +33,26 @@ const defaultSections = [
 ];
 
 const defaultSocialLinks = [
-  { icon: <FaInstagram className="size-5" />, href: "#", label: "Instagram" },
-  { icon: <FaFacebook className="size-5" />, href: "#", label: "Facebook" },
-  { icon: <FaTwitter className="size-5" />, href: "#", label: "Twitter" },
-  { icon: <FaLinkedin className="size-5" />, href: "#", label: "LinkedIn" },
+  {
+    icon: <FaInstagram className="size-5" />,
+    href: "https://www.instagram.com/musfiqursaikot",
+    label: "Instagram",
+  },
+  {
+    icon: <FaFacebook className="size-5" />,
+    href: "https://www.facebook.com/MusfiqurRahmanSaikot",
+    label: "Facebook",
+  },
+  {
+    icon: <FaTwitter className="sizes-5" />,
+    href: "https://x.com/MusfiqurRhaman6",
+    label: "Twitter",
+  },
+  {
+    icon: <FaLinkedin className="size-5" />,
+    href: "https://www.linkedin.com/in/musfiqurrahmansaikot",
+    label: "LinkedIn",
+  },
 ];
 
 const defaultLegalLinks = [
@@ -45,15 +62,15 @@ const defaultLegalLinks = [
 
 const Footer = ({
   logo = {
-    url: "https://localhost:5173",
-    src: "https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg",
+    url: "/",
+    src: { favIcon },
     alt: "logo",
     title: "MusfiqurRahman's.hub",
   },
   sections = defaultSections,
-  description = "A collection of components for My startup business and side project.",
+  description = "A collection of Projects and Skills that feels home to me.",
   socialLinks = defaultSocialLinks,
-  copyright = "© 2024 Shadcnblocks.com. All rights reserved.",
+  copyright = "© 2025 Nusfiqurrahman'sHub. All rights reserved.",
   legalLinks = defaultLegalLinks,
 }) => {
   return (
@@ -80,7 +97,11 @@ const Footer = ({
             <ul className="text-muted-foreground flex items-center space-x-6">
               {socialLinks.map((social, idx) => (
                 <li key={idx} className="hover:text-primary font-medium">
-                  <a href={social.href} aria-label={social.label}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    aria-label={social.label}
+                  >
                     {social.icon}
                   </a>
                 </li>
