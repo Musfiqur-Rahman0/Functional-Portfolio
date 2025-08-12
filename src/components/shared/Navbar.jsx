@@ -136,8 +136,8 @@ const Navbar = () => {
   };
 
   return (
-    <section className="py-4 ">
-      <div className="max-w-7xl mx-auto ">
+    <section className="py-4 fixed top-0 w-full z-[100] ">
+      <div className="backdrop-blur-md max-w-7xl mx-auto ">
         <nav className=" flex items-center justify-between">
           <a
             // href="https://www.shadcnblocks.com"
@@ -244,19 +244,16 @@ const Navbar = () => {
             <SheetContent side="top" className="max-h-screen overflow-auto">
               <SheetHeader>
                 <SheetTitle>
-                  <a
-                    href="https://www.shadcnblocks.com"
-                    className="flex items-center gap-2"
-                  >
-                    <img
+                  <Link to={"/"} className="flex items-center gap-2">
+                    {/* <img
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/block/logos/shadcnblockscom-icon.svg"
                       className="max-h-8"
                       alt="Shadcn UI Navbar"
-                    />
+                    /> */}
                     <span className="text-lg font-semibold tracking-tighter">
-                      Shadcnblocks.com
+                      Musfiqurrahman'sHub
                     </span>
-                  </a>
+                  </Link>
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-6 px-5">

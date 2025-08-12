@@ -3,28 +3,54 @@ import circle from "../../assets/testfinal.json";
 import Lottie from "lottie-react";
 import bannerImg from "../../assets/banner-man.png";
 import CircleBackground from "../shared/CircleBackground";
+import { GoDownload } from "react-icons/go";
+import { motion } from "motion/react";
+import cv from "../../assets/MusfiqurRahmanResume.pdf";
 
 const HeroSection = () => {
   return (
-    <div className="mt-20 flex flex-col md:grid md:grid-cols-2 gap-5 md:gap-20 justify-between relative">
-      <figure className="relative z-10 md:absolute md:top-1/2 md:left-1/2 md:-translate-y-1/2 md:-translate-x-1/2 h-full ">
+    <div className="mt-20 flex flex-col md:grid md:grid-cols-2 gap-5 md:gap-24 justify-between relative">
+      <figure className="relative z-10 md:absolute md:top-1/2 md:left-[52%] md:-translate-y-1/2 md:-translate-x-[52%] h-full ">
         <img src={bannerImg} alt="" className="h-full " />
         <CircleBackground className="" />
       </figure>
       <CircleBackground className="hidden md:block" />
-      <div className="">
+      <div className="flex flex-col gap-4 items-center">
         <h2 className="hidden md:block md:text-8xl md:text-right  lg:text-9xl font-bold lg:text-right">
           Musfiqur Rahman
         </h2>
+
+        {/* <motion.a
+          initial={{ y: 0 }}
+          animate={{ y: -10 }}
+          href={cv}
+          download={"MusfiqurRahmanResume.pdf"}
+          transition={{
+            duration: 0.8,
+            repeat: Infinity,
+            repeatType: "reverse",
+          }}
+          className="border border-primary rounded-full aspect-square p-2 cursor-pointer"
+        >
+          <GoDownload size={24} className="text-white" />
+        </motion.a> */}
       </div>
       <div className="z-10 lg:pl-10  rounded-lg  bg-transparent backdrop:blur-3xl    flex items-center justify-end">
-        <div className="min-w-[40px]  space-y-5 flex flex-col items-start justify-between">
-          <Lottie
-            animationData={circle}
-            style={{
-              height: 100,
+        <div className="min-w-[40px]   flex flex-col items-start justify-between">
+          <motion.a
+            initial={{ y: 0 }}
+            animate={{ y: -10 }}
+            href={cv}
+            download={"MusfiqurRahmanResume.pdf"}
+            transition={{
+              duration: 0.8,
+              repeat: Infinity,
+              repeatType: "reverse",
             }}
-          />
+            className="border border-primary rounded-full aspect-square p-2 cursor-pointer  flex items-center justify-center"
+          >
+            <GoDownload size={30} className="text-white" />
+          </motion.a>
           <div className=" text-white flex items-center justify-center ">
             <div className="max-w-md space-y-6">
               <div>
@@ -57,12 +83,15 @@ const HeroSection = () => {
                   <span className="font-semibold">Email:</span>{" "}
                   musfiqurrhaman6@gmail.com
                 </p>
-                {/* <p><span class="font-semibold">E:</span> example@website.com</p> */}
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* <Button className={"absolute -bottom-16 left-1/2 -translate-x-1/2 w-1/4"}>
+        Download CV
+      </Button> */}
     </div>
   );
 };
