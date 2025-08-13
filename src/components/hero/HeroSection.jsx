@@ -5,7 +5,7 @@ import bannerImg from "../../assets/banner-man.png";
 import CircleBackground from "../shared/CircleBackground";
 import { GoDownload } from "react-icons/go";
 import { motion } from "motion/react";
-import cv from "../../assets/MusfiqurRahmanResume.pdf";
+import resume from "../../assets/MusfiqurRahmanResume (4) (1).pdf";
 
 const HeroSection = () => {
   return (
@@ -25,7 +25,7 @@ const HeroSection = () => {
           <motion.a
             initial={{ y: 0 }}
             animate={{ y: -10 }}
-            href={cv}
+            href={resume}
             download={"MusfiqurRahmanResume.pdf"}
             transition={{
               duration: 0.8,

@@ -12,6 +12,7 @@ const useCurd = (endpoint, { readEnabled = true } = {}) => {
       const res = await axiosSecure.get(endpoint);
       return res.data;
     },
+    enabled: readEnabled,
   });
 
   const create = useMutation({
