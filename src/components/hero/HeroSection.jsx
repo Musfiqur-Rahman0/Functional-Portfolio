@@ -9,6 +9,7 @@ import resume from "../../assets/MusfiqurRahmanResume (4) (1).pdf";
 
 const HeroSection = () => {
   return (
+    // hellow world
     <div className="mt-20 flex flex-col md:grid md:grid-cols-2 gap-5 md:gap-24 justify-between relative">
       <figure className="relative z-10 md:absolute  md:top-1/2 md:left-[52%] md:-translate-y-1/2 md:-translate-x-[52%] h-full ">
         <img src={bannerImg} alt="" className="h-full " />
