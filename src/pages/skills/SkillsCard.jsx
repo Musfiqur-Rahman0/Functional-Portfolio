@@ -40,7 +40,7 @@ export default function SkillCard({ data }) {
           <p>Learn {data["Package Name"]}</p>
         </motion.div>
       )} */}
-      <Card className="relative w-full max-w-md shadow-xl h-full z-10  group-hover:text-white group-hover:[&_.text-muted-foreground]:text-white group-hover:bg-transparent origin-center transition-all  duration-300 ease-linear">
+      <Card className="relative bg-blue-100 w-full max-w-md shadow-xl h-full z-10  group-hover:text-white group-hover:[&_.text-muted-foreground]:text-white group-hover:bg-transparent origin-center transition-all  duration-300 ease-linear">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <img

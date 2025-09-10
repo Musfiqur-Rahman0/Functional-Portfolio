@@ -20,7 +20,7 @@ const Skills = () => {
         </p>
       </div>
 
-      <div className="grid  lg:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-2  lg:grid-cols-3 gap-4">
         {isPending
           ? [...Array(6)].map((_, idx) => <SkillCardSkeleton key={idx} />)
           : skills?.map((skill) => <SkillCard data={skill} />)}
